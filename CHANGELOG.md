@@ -5,6 +5,15 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.4.3] – 2026-05-24
+
+### Fikset
+- **Hero-bakgrunn:** Fast mørk fallback (`#1A3A2A`) – påvirkes ikke lenger av brukerens primærfargevalg
+- **Footer-bakgrunn:** Tilsvarende hardkodet mørk bakgrunn
+- **Knappetekst:** Primærknapper får nå alltid hvit tekst siden accent-fargen (`#006B68`) er mørk
+
+---
+
 ## [1.4.2] – 2026-05-24
 
 ### Endret

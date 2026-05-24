@@ -151,7 +151,7 @@ strong { font-weight: 700; }
 
 .btn--primary {
   background: var(--color-accent);
-  color: var(--color-primary);
+  color: #FFFFFF;
   border-color: var(--color-accent);
 }
 .btn--primary:hover {
@@ -336,7 +336,7 @@ strong { font-weight: 700; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--color-primary);
+  background-color: #1A3A2A; /* fast mørk fallback – uavhengig av admin-fargevalg */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1238,7 +1238,7 @@ strong { font-weight: 700; }
 }
 
 /* ── 17. Footer ─────────────────────────────────────────────── */
-.site-footer { background: var(--color-primary); color: rgba(255,255,255,0.75); }
+.site-footer { background: #1A3A2A; color: rgba(255,255,255,0.75); } /* fast mørk bakgrunn */
 
 .footer-main { padding: var(--space-16) 0; }
 .footer-main__inner {
