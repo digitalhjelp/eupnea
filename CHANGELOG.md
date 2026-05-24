@@ -5,6 +5,26 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.4.0] – 2026-05-24
+
+### Fikset
+- **Gutenberg-konflikt med ACF:** Alle fire WordPress-filtre aktivert
+  (`use_block_editor_for_post`, `use_block_editor_for_post_type`,
+  `gutenberg_can_edit_post`, `gutenberg_can_edit_post_type`) med
+  prioritet 999 – fungerer nå uavhengig av WordPress-versjon og plugins
+- Admin-varsel på sider med direkte lenke til klassisk editor
+  hvis Gutenberg likevel lastes
+
+### Endret
+- **Farger** oppdatert til Eupnea-merkevare:
+  - Primær: `#1A3A2A` (mørk skoggrønn)
+  - Sekundær: `#40916C` (mellomgrønn)
+  - Accent: `#6BCB77` (lysegrønn)
+- Grønntonede nøytrale farger (grå-paletten)
+- Admin-panel oppdatert med grønn gradient
+
+---
+
 ## [1.3.1] – 2026-05-24
 
 ### Lagt til

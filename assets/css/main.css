@@ -6,27 +6,27 @@
 /* ── 1. CSS-variabler ───────────────────────────────────────── */
 :root {
   /* Farger (overskrives dynamisk via PHP-innstillinger) */
-  --color-primary:       #0D3349;
-  --color-primary-rgb:   13, 51, 73;
-  --color-secondary:     #14B8A6;
-  --color-secondary-rgb: 20, 184, 166;
-  --color-accent:        #F59E0B;
-  --color-accent-rgb:    245, 158, 11;
+  --color-primary:       #1A3A2A;
+  --color-primary-rgb:   26, 58, 42;
+  --color-secondary:     #40916C;
+  --color-secondary-rgb: 64, 145, 108;
+  --color-accent:        #6BCB77;
+  --color-accent-rgb:    107, 203, 119;
 
-  /* Nøytrale */
+  /* Nøytrale – grønntonet grå */
   --color-white:         #FFFFFF;
-  --color-gray-50:       #F8FAFC;
-  --color-gray-100:      #F1F5F9;
-  --color-gray-200:      #E2E8F0;
-  --color-gray-300:      #CBD5E1;
-  --color-gray-400:      #94A3B8;
-  --color-gray-500:      #64748B;
-  --color-gray-600:      #475569;
-  --color-gray-700:      #334155;
-  --color-gray-800:      #1E293B;
-  --color-gray-900:      #0F172A;
-  --color-text:          var(--color-gray-800);
-  --color-text-muted:    var(--color-gray-500);
+  --color-gray-50:       #F4F7F5;
+  --color-gray-100:      #E8F0EB;
+  --color-gray-200:      #D1E3D8;
+  --color-gray-300:      #A8C5B2;
+  --color-gray-400:      #7EA98E;
+  --color-gray-500:      #5A8A6A;
+  --color-gray-600:      #3D6B4F;
+  --color-gray-700:      #2D5040;
+  --color-gray-800:      #1A3A2A;
+  --color-gray-900:      #0F2218;
+  --color-text:          #1A2E22;
+  --color-text-muted:    #5A7A65;
 
   /* Typografi */
   --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
@@ -663,7 +663,7 @@ strong { font-weight: 700; }
 .ansatt-popup__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(13, 51, 73, 0.55);
+  background: rgba(26, 58, 42, 0.55);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   cursor: pointer;
@@ -673,7 +673,7 @@ strong { font-weight: 700; }
 .ansatt-popup__panel {
   position: relative;
   z-index: 1;
-  background: #FAF8F3;
+  background: #F4F9F6;
   border-radius: var(--border-radius-xl);
   width: 100%;
   max-width: 640px;

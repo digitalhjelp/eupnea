@@ -7,7 +7,7 @@
 
 defined('ABSPATH') || exit;
 
-define('EUPNEA_VERSION', '1.3.1');
+define('EUPNEA_VERSION', '1.4.0');
 define('EUPNEA_DIR', get_template_directory());
 define('EUPNEA_URI', get_template_directory_uri());
 
@@ -83,14 +83,73 @@ add_action('widgets_init', 'eupnea_widgets_init');
 remove_action('wp_head', 'wp_generator');
 
 // ──────────────────────────────────────────────
-// Deaktiver Gutenberg for sider og CPT-er
-// → ACF metabokser og Flexible Content fungerer da korrekt
+// Deaktiver Gutenberg fullstendig for sider og CPT-er
+// Bruker ALLE kjente filtre for maksimal kompatibilitet
 // ──────────────────────────────────────────────
-function eupnea_disable_gutenberg(bool $use_block_editor, WP_Post $post): bool {
-    $classic_types = ['page', 'ansatt', 'mentor', 'partner', 'tilbakemelding'];
-    if (in_array($post->post_type, $classic_types, true)) {
-        return false;
+$eupnea_classic_types = ['page', 'ansatt', 'mentor', 'partner', 'tilbakemelding'];
+
+// Filter 1: WordPress core (post-objekt)
+add_filter('use_block_editor_for_post', function ($use, $post) use ($eupnea_classic_types) {
+    return in_array($post->post_type, $eupnea_classic_types, true) ? false : $use;
+}, 999, 2);
+
+// Filter 2: WordPress core (post-type streng) – mest pålitelig
+add_filter('use_block_editor_for_post_type', function ($use, $post_type) use ($eupnea_classic_types) {
+    return in_array($post_type, $eupnea_classic_types, true) ? false : $use;
+}, 999, 2);
+
+// Filter 3: Gutenberg-pluginet (hvis installert)
+add_filter('gutenberg_can_edit_post_type', function ($use, $post_type) use ($eupnea_classic_types) {
+    return in_array($post_type, $eupnea_classic_types, true) ? false : $use;
+}, 999, 2);
+
+add_filter('gutenberg_can_edit_post', function ($use, $post) use ($eupnea_classic_types) {
+    return in_array($post->post_type, $eupnea_classic_types, true) ? false : $use;
+}, 999, 2);
+
+// ──────────────────────────────────────────────
+// Admin-varsel + redirect hvis Gutenberg likevel lastes
+// ──────────────────────────────────────────────
+add_action('admin_init', function () use ($eupnea_classic_types) {
+    // Redirect til klassisk editor hvis vi er i Gutenberg for en klassisk side
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen) return;
+
+    global $pagenow;
+    if (!in_array($pagenow, ['post.php', 'post-new.php'], true)) return;
+
+    $post_id   = absint($_GET['post'] ?? 0);
+    $post_type = $_GET['post_type'] ?? ($post_id ? get_post_type($post_id) : '');
+
+    if (!in_array($post_type, $eupnea_classic_types, true)) return;
+
+    // Hvis Gutenberg er aktivt for dette innlegget, redirect til klassisk URL
+    if (isset($_GET['action']) && $_GET['action'] === 'edit' && $post_id) {
+        if (function_exists('use_block_editor_for_post') && use_block_editor_for_post($post_id)) {
+            wp_redirect(admin_url("post.php?post={$post_id}&action=edit&classic-editor"));
+            exit;
+        }
     }
-    return $use_block_editor;
-}
-add_filter('use_block_editor_for_post', 'eupnea_disable_gutenberg', 10, 2);
+});
+
+// Admin-varsel øverst på sider/CPT-editoren
+add_action('admin_notices', function () use ($eupnea_classic_types) {
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (!$screen || !in_array($screen->post_type, $eupnea_classic_types, true)) return;
+    if (!in_array($screen->base, ['post'], true)) return;
+
+    global $post;
+    $classic_url = $post ? admin_url("post.php?post={$post->ID}&action=edit&classic-editor") : '';
+    ?>
+    <div class="notice notice-info eupnea-editor-notice" style="display:flex;align-items:center;gap:1rem;padding:0.75rem 1rem;">
+        <span>🧩 <strong>Eupnea-moduler:</strong>
+        Scroll ned til <strong>«Sidebygger – Moduler»</strong> under tekstfeltet og klikk <strong>«➕ Legg til modul»</strong>.</span>
+        <?php if ($classic_url) : ?>
+        <a href="<?php echo esc_url($classic_url); ?>" class="button button-small">
+            Bytt til klassisk editor
+        </a>
+        <?php endif; ?>
+    </div>
+    <?php
+});
+

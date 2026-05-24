@@ -76,9 +76,9 @@ function eupnea_register_settings(): void {
     // Generelle innstillinger
     register_setting('eupnea_general', 'eupnea_tagline',   ['sanitize_callback' => 'sanitize_text_field']);
     register_setting('eupnea_general', 'eupnea_footer_text', ['sanitize_callback' => 'wp_kses_post']);
-    register_setting('eupnea_general', 'eupnea_primary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#0D3349']);
-    register_setting('eupnea_general', 'eupnea_secondary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#14B8A6']);
-    register_setting('eupnea_general', 'eupnea_accent_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#F59E0B']);
+    register_setting('eupnea_general', 'eupnea_primary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#1A3A2A']);
+    register_setting('eupnea_general', 'eupnea_secondary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#40916C']);
+    register_setting('eupnea_general', 'eupnea_accent_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#6BCB77']);
 
     // Kontaktinnstillinger
     register_setting('eupnea_contact', 'eupnea_address',  ['sanitize_callback' => 'sanitize_textarea_field']);
@@ -97,9 +97,9 @@ add_action('admin_init', 'eupnea_register_settings');
 // Dynamiske CSS-variabler basert på fargevalg
 // ──────────────────────────────────────────────
 function eupnea_dynamic_colors(): void {
-    $primary   = get_option('eupnea_primary_color',   '#0D3349');
-    $secondary = get_option('eupnea_secondary_color', '#14B8A6');
-    $accent    = get_option('eupnea_accent_color',    '#F59E0B');
+    $primary   = get_option('eupnea_primary_color',   '#1A3A2A');
+    $secondary = get_option('eupnea_secondary_color', '#40916C');
+    $accent    = get_option('eupnea_accent_color',    '#6BCB77');
 
     // Konverter til RGB for alpha-støtte
     $primary_rgb   = eupnea_hex_to_rgb($primary);
@@ -154,7 +154,7 @@ function eupnea_render_settings_page(): void {
                             <th><?php esc_html_e('Primærfarge', 'eupnea'); ?></th>
                             <td>
                                 <input type="color" name="eupnea_primary_color"
-                                       value="<?php echo esc_attr(get_option('eupnea_primary_color', '#0D3349')); ?>">
+                                       value="<?php echo esc_attr(get_option('eupnea_primary_color', '#1A3A2A')); ?>">
                                 <p class="description"><?php esc_html_e('Brukes til overskrifter, knapper og bakgrunner.', 'eupnea'); ?></p>
                             </td>
                         </tr>
@@ -162,7 +162,7 @@ function eupnea_render_settings_page(): void {
                             <th><?php esc_html_e('Sekundærfarge', 'eupnea'); ?></th>
                             <td>
                                 <input type="color" name="eupnea_secondary_color"
-                                       value="<?php echo esc_attr(get_option('eupnea_secondary_color', '#14B8A6')); ?>">
+                                       value="<?php echo esc_attr(get_option('eupnea_secondary_color', '#40916C')); ?>">
                                 <p class="description"><?php esc_html_e('Teal/turkis – aksentfarger og highlights.', 'eupnea'); ?></p>
                             </td>
                         </tr>
@@ -170,7 +170,7 @@ function eupnea_render_settings_page(): void {
                             <th><?php esc_html_e('Accentfarge', 'eupnea'); ?></th>
                             <td>
                                 <input type="color" name="eupnea_accent_color"
-                                       value="<?php echo esc_attr(get_option('eupnea_accent_color', '#F59E0B')); ?>">
+                                       value="<?php echo esc_attr(get_option('eupnea_accent_color', '#6BCB77')); ?>">
                                 <p class="description"><?php esc_html_e('Brukes til CTA-knapper og uthevede elementer.', 'eupnea'); ?></p>
                             </td>
                         </tr>
