@@ -779,6 +779,27 @@ strong { font-weight: 700; }
   margin: 0;
 }
 
+/* Motto */
+.ansatt-popup__motto {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-5) var(--space-6);
+  background: rgba(var(--color-secondary-rgb), 0.08);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  line-height: 1.6;
+  font-style: italic;
+}
+.ansatt-popup__motto-mark {
+  color: var(--color-secondary);
+  font-size: 1.4em;
+  line-height: 0;
+  vertical-align: -0.2em;
+  font-style: normal;
+}
+
 /* Mobil */
 @media (max-width: 600px) {
   .ansatt-popup { padding: 0; align-items: flex-end; }

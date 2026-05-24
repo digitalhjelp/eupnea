@@ -109,6 +109,14 @@ function eupnea_register_cpt_acf_fields(): void {
                 'rows'        => 3,
                 'placeholder' => 'Hva er dine fremste styrker?',
             ],
+            [
+                'key'          => 'field_ansatt_motto',
+                'label'        => 'Motto',
+                'name'         => 'motto',
+                'type'         => 'text',
+                'placeholder'  => 'f.eks. «Aldri gi opp»',
+                'instructions' => 'Vises som avsluttende sitat nederst i popup',
+            ],
         ],
         'location' => [
             [['param' => 'post_type', 'operator' => '==', 'value' => 'ansatt']],

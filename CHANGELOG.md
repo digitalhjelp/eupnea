@@ -5,6 +5,14 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.3.1] – 2026-05-24
+
+### Lagt til
+- **Motto-felt** på Ansatt CPT (under «Popup-innhold»-fanen)
+- Motto vises som fremhevet sitat nederst i popup med teal venstrekant
+
+---
+
 ## [1.3.0] – 2026-05-24
 
 ### Lagt til

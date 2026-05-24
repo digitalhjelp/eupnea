@@ -66,7 +66,8 @@ if (empty($ansatte)) return;
                 $mitt_bidrag  = get_field('mitt_bidrag',  $ansatt->ID);
                 $ansvar_for   = get_field('ansvar_for',   $ansatt->ID);
                 $styrker      = get_field('styrker',      $ansatt->ID);
-                $has_popup    = ($hvem_er_du || $rolle || $mitt_bidrag || $ansvar_for || $styrker);
+                $motto        = get_field('motto',        $ansatt->ID);
+                $has_popup    = ($hvem_er_du || $rolle || $mitt_bidrag || $ansvar_for || $styrker || $motto);
                 $card_id      = 'ansatt-' . $ansatt->ID;
             ?>
             <div class="person-card<?php echo $has_popup ? ' person-card--clickable' : ''; ?>"
@@ -196,6 +197,12 @@ if (empty($ansatte)) return;
                                 <p class="ansatt-popup__section-text"><?php echo nl2br(esc_html($content)); ?></p>
                             </div>
                             <?php endforeach; ?>
+
+                            <?php if ($motto) : ?>
+                            <blockquote class="ansatt-popup__motto">
+                                <span class="ansatt-popup__motto-mark">"</span><?php echo esc_html($motto); ?><span class="ansatt-popup__motto-mark">"</span>
+                            </blockquote>
+                            <?php endif; ?>
                         </div>
 
                     </div><!-- /.ansatt-popup__content -->
