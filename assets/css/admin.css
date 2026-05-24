@@ -1,0 +1,160 @@
+/* ============================================================
+   EUPNEA – Admin-stilark
+   ============================================================ */
+
+/* ── Admin wrapper ──────────────────────────────────────────── */
+.eupnea-admin-wrap {
+  max-width: 960px;
+}
+
+.eupnea-admin-header {
+  background: linear-gradient(135deg, #0D3349 0%, #14B8A6 100%);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.eupnea-admin-header h1 {
+  color: #fff !important;
+  font-size: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0 !important;
+}
+.eupnea-admin-header p {
+  color: rgba(255,255,255,0.8);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ── Settings grid ──────────────────────────────────────────── */
+.eupnea-settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.eupnea-settings-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.eupnea-settings-card h2 {
+  font-size: 1.1rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.25rem !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 2px solid #f1f5f9;
+  color: #0D3349 !important;
+}
+
+.eupnea-settings-card .form-table th {
+  padding: 0.75rem 0.5rem 0.75rem 0;
+  font-weight: 600;
+  color: #334155;
+  width: 180px;
+}
+.eupnea-settings-card .form-table td { padding: 0.75rem 0.5rem; }
+.eupnea-settings-card .description {
+  color: #64748b;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+input[type="color"] {
+  width: 48px !important;
+  height: 36px !important;
+  padding: 2px !important;
+  border-radius: 6px;
+  border: 2px solid #e2e8f0 !important;
+  cursor: pointer;
+}
+
+/* ── Notice ─────────────────────────────────────────────────── */
+.eupnea-notice {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.eupnea-notice--info {
+  background: #EFF6FF;
+  border-left: 4px solid #3B82F6;
+  color: #1E40AF;
+}
+.eupnea-notice strong { margin-right: 0.5rem; }
+
+/* ── Modules grid ───────────────────────────────────────────── */
+.eupnea-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.eupnea-module-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+.eupnea-module-card:hover {
+  border-color: #14B8A6;
+  box-shadow: 0 4px 12px rgba(20,184,166,0.15);
+  transform: translateY(-2px);
+}
+
+.eupnea-module-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.eupnea-module-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0D3349;
+  margin-bottom: 0.4rem;
+  margin-top: 0;
+}
+.eupnea-module-card p {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.eupnea-module-card code {
+  font-size: 0.7rem;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #475569;
+}
+
+/* ── Submit button ──────────────────────────────────────────── */
+.submit .button-primary {
+  background: #14B8A6 !important;
+  border-color: #14B8A6 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 1.75rem !important;
+  height: auto !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+}
+.submit .button-primary:hover {
+  background: #0D9488 !important;
+  border-color: #0D9488 !important;
+}
+
+/* ── Responsiv admin ────────────────────────────────────────── */
+@media (max-width: 782px) {
+  .eupnea-settings-grid { grid-template-columns: 1fr; }
+  .eupnea-admin-header  { padding: 1.5rem; }
+}
