@@ -21,22 +21,21 @@ function eupnea_register_cpt_acf_fields(): void {
         'key'    => 'group_ansatt',
         'title'  => '👤 Ansatt-informasjon',
         'fields' => [
+            // ── Grunninfo ──
+            [
+                'key'   => 'field_ansatt_tab_basis',
+                'label' => 'Grunninfo',
+                'name'  => '',
+                'type'  => 'tab',
+            ],
             [
                 'key'          => 'field_ansatt_stilling',
                 'label'        => 'Stilling / Tittel',
                 'name'         => 'stilling',
                 'type'         => 'text',
                 'required'     => 1,
-                'placeholder'  => 'f.eks. Daglig leder',
-                'instructions' => 'Vises under navn på nettsiden',
-            ],
-            [
-                'key'          => 'field_ansatt_bio',
-                'label'        => 'Kort biografi',
-                'name'         => 'bio',
-                'type'         => 'textarea',
-                'rows'         => 4,
-                'placeholder'  => 'Kort presentasjon av personen...',
+                'placeholder'  => 'f.eks. Chief Executive Officer',
+                'instructions' => 'Vises under navn på kortet og i popup',
             ],
             [
                 'key'           => 'field_ansatt_epost',
@@ -60,6 +59,55 @@ function eupnea_register_cpt_acf_fields(): void {
                 'ui'           => 1,
                 'default_value'=> 1,
                 'instructions' => 'Slå av for å skjule fra teammodulen',
+            ],
+
+            // ── Popup-innhold ──
+            [
+                'key'   => 'field_ansatt_tab_popup',
+                'label' => 'Popup-innhold',
+                'name'  => '',
+                'type'  => 'tab',
+            ],
+            [
+                'key'          => 'field_ansatt_hvem_er_du',
+                'label'        => 'Hvem er du?',
+                'name'         => 'hvem_er_du',
+                'type'         => 'textarea',
+                'rows'         => 4,
+                'placeholder'  => 'Beskriv deg selv – bakgrunn, utdanning, erfaring...',
+                'instructions' => 'Vises som første seksjon i popup',
+            ],
+            [
+                'key'         => 'field_ansatt_rolle',
+                'label'       => 'Rolle',
+                'name'        => 'rolle',
+                'type'        => 'textarea',
+                'rows'        => 3,
+                'placeholder' => 'Hva er din rolle i Eupnea?',
+            ],
+            [
+                'key'         => 'field_ansatt_mitt_bidrag',
+                'label'       => 'Mitt bidrag',
+                'name'        => 'mitt_bidrag',
+                'type'        => 'textarea',
+                'rows'        => 4,
+                'placeholder' => 'Hva bidrar du med i teamet og prosjektet?',
+            ],
+            [
+                'key'         => 'field_ansatt_ansvar_for',
+                'label'       => 'Ansvar for',
+                'name'        => 'ansvar_for',
+                'type'        => 'textarea',
+                'rows'        => 3,
+                'placeholder' => 'Hva er du ansvarlig for?',
+            ],
+            [
+                'key'         => 'field_ansatt_styrker',
+                'label'       => 'Styrker',
+                'name'        => 'styrker',
+                'type'        => 'textarea',
+                'rows'        => 3,
+                'placeholder' => 'Hva er dine fremste styrker?',
             ],
         ],
         'location' => [

@@ -617,6 +617,184 @@ strong { font-weight: 700; }
 }
 .person-card__link svg { width: 14px; height: 14px; }
 
+/* Klikk-effekt på kort med popup */
+.person-card--clickable {
+  cursor: pointer;
+}
+.person-card--clickable:hover .person-card__photo {
+  border-color: var(--color-secondary);
+}
+.person-card--clickable:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 4px;
+  border-radius: var(--border-radius);
+}
+
+/* «Mer om»-knapp */
+.person-card__more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: gap var(--transition);
+}
+.person-card__more-btn:hover { gap: var(--space-3); color: var(--color-primary); }
+
+/* ── Ansatt Popup ──────────────────────────────────────────── */
+.ansatt-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+.ansatt-popup[hidden] { display: none; }
+
+/* Backdrop */
+.ansatt-popup__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 51, 73, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+/* Panel */
+.ansatt-popup__panel {
+  position: relative;
+  z-index: 1;
+  background: #FAF8F3;
+  border-radius: var(--border-radius-xl);
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  animation: popupIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-200) transparent;
+}
+@keyframes popupIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+/* Lukk-knapp */
+.ansatt-popup__close {
+  position: sticky;
+  top: 1.25rem;
+  float: right;
+  margin: 1.25rem 1.25rem 0 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.06);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-600);
+  transition: all var(--transition);
+  flex-shrink: 0;
+  z-index: 2;
+}
+.ansatt-popup__close:hover {
+  background: rgba(0,0,0,0.12);
+  color: var(--color-primary);
+}
+.ansatt-popup__close svg { width: 18px; height: 18px; }
+
+/* Innhold */
+.ansatt-popup__content {
+  padding: 2rem 2.5rem 2.5rem;
+  margin-top: -36px; /* overlapper sticky close-knapp */
+}
+
+/* Header */
+.ansatt-popup__name {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+  padding-right: 2.5rem; /* plass til lukk-knapp */
+  line-height: 1.25;
+}
+.ansatt-popup__stilling {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+}
+.ansatt-popup__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+  margin-bottom: var(--space-5);
+}
+.ansatt-popup__linkedin:hover { color: var(--color-secondary); }
+.ansatt-popup__linkedin svg  { width: 18px; height: 18px; color: #0A66C2; }
+.ansatt-popup__ext-icon      { width: 12px !important; height: 12px !important; color: var(--color-gray-400) !important; }
+
+.ansatt-popup__divider {
+  border: none;
+  border-top: 1.5px solid var(--color-gray-200);
+  margin: 0 0 var(--space-6);
+}
+
+/* Seksjoner */
+.ansatt-popup__sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.ansatt-popup__section-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-2);
+  font-weight: 400;
+}
+.ansatt-popup__section-text {
+  font-size: var(--text-base);
+  color: var(--color-gray-800);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+  .ansatt-popup { padding: 0; align-items: flex-end; }
+  .ansatt-popup__panel {
+    max-height: 92vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    animation: popupSlideUp 0.3s ease;
+  }
+  @keyframes popupSlideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .ansatt-popup__content { padding: 1.5rem 1.5rem 2rem; }
+}
+
 /* Mentorer */
 .mentors__grid {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

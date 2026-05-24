@@ -233,4 +233,78 @@
     sections.forEach(s => sectionObserver.observe(s));
   }
 
+  // ── 10. Ansatt-popup ────────────────────────────────────────
+  const body = document.body;
+
+  function openPopup(popupId) {
+    const popup = document.getElementById(popupId);
+    if (!popup) return;
+
+    popup.removeAttribute('hidden');
+    body.style.overflow = 'hidden';
+    popup.querySelector('.ansatt-popup__content')?.scrollTo(0, 0);
+
+    // Sett fokus på lukk-knappen
+    const closeBtn = popup.querySelector('.ansatt-popup__close');
+    setTimeout(() => closeBtn?.focus(), 50);
+
+    // Fange fokus inni popupen
+    popup.addEventListener('keydown', trapFocus);
+    popup._trapFocus = trapFocus;
+
+    function trapFocus(e) {
+      if (e.key !== 'Tab') return;
+      const focusable = popup.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    }
+  }
+
+  function closePopup(popup) {
+    if (!popup) return;
+    popup.setAttribute('hidden', '');
+    body.style.overflow = '';
+    if (popup._trapFocus) popup.removeEventListener('keydown', popup._trapFocus);
+
+    // Returner fokus til trigger-elementet
+    const trigger = document.querySelector(`[data-popup="${popup.id}"]`);
+    trigger?.focus();
+  }
+
+  // Åpne popup via kort-klikk
+  document.querySelectorAll('[data-popup]').forEach(trigger => {
+    trigger.addEventListener('click', () => openPopup(trigger.dataset.popup));
+    trigger.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPopup(trigger.dataset.popup);
+      }
+    });
+  });
+
+  // Lukk via X-knapp
+  document.querySelectorAll('.ansatt-popup__close').forEach(btn => {
+    btn.addEventListener('click', () => closePopup(btn.closest('.ansatt-popup')));
+  });
+
+  // Lukk via backdrop-klikk
+  document.querySelectorAll('.ansatt-popup__backdrop').forEach(backdrop => {
+    backdrop.addEventListener('click', () => closePopup(backdrop.closest('.ansatt-popup')));
+  });
+
+  // Lukk via Escape
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    const open = document.querySelector('.ansatt-popup:not([hidden])');
+    if (open) closePopup(open);
+  });
+
 })();
