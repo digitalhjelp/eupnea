@@ -13,20 +13,21 @@
   --color-accent:        #6BCB77;
   --color-accent-rgb:    107, 203, 119;
 
-  /* Nøytrale – grønntonet grå */
+  /* Nøytrale – varme sandtoner (matcher bakgrunnen #F9E5D7) */
   --color-white:         #FFFFFF;
-  --color-gray-50:       #F4F7F5;
-  --color-gray-100:      #E8F0EB;
-  --color-gray-200:      #D1E3D8;
-  --color-gray-300:      #A8C5B2;
-  --color-gray-400:      #7EA98E;
-  --color-gray-500:      #5A8A6A;
-  --color-gray-600:      #3D6B4F;
-  --color-gray-700:      #2D5040;
-  --color-gray-800:      #1A3A2A;
-  --color-gray-900:      #0F2218;
-  --color-text:          #1A2E22;
-  --color-text-muted:    #5A7A65;
+  --color-bg:            #F9E5D7;
+  --color-gray-50:       #F9E5D7;
+  --color-gray-100:      #F2D5C0;
+  --color-gray-200:      #E5BFA5;
+  --color-gray-300:      #CFA088;
+  --color-gray-400:      #B8826B;
+  --color-gray-500:      #9A6452;
+  --color-gray-600:      #7A4A3A;
+  --color-gray-700:      #5A3328;
+  --color-gray-800:      #3D2018;
+  --color-gray-900:      #241208;
+  --color-text:          #2A1A12;
+  --color-text-muted:    #7A5848;
 
   /* Typografi */
   --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
@@ -89,7 +90,7 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-text);
-  background: var(--color-white);
+  background: var(--color-bg);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }

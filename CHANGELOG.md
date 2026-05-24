@@ -5,6 +5,15 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.4.1] – 2026-05-24
+
+### Endret
+- **Bakgrunnsfarge** oppdatert til `#F9E5D7` (varm peach/sand)
+- Nøytral-palett (gray-50 → gray-900) justert til varme sandtoner som harmonerer med bakgrunnsfargen
+- `body` bruker nå CSS-variabelen `--color-bg` for bakgrunnen
+
+---
+
 ## [1.4.0] – 2026-05-24
 
 ### Fikset
