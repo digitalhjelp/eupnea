@@ -76,9 +76,10 @@ function eupnea_register_settings(): void {
     // Generelle innstillinger
     register_setting('eupnea_general', 'eupnea_tagline',   ['sanitize_callback' => 'sanitize_text_field']);
     register_setting('eupnea_general', 'eupnea_footer_text', ['sanitize_callback' => 'wp_kses_post']);
-    register_setting('eupnea_general', 'eupnea_primary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#1A3A2A']);
-    register_setting('eupnea_general', 'eupnea_secondary_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#40916C']);
-    register_setting('eupnea_general', 'eupnea_accent_color', ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#6BCB77']);
+    register_setting('eupnea_general', 'eupnea_primary_color',    ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#1A3A2A']);
+    register_setting('eupnea_general', 'eupnea_secondary_color',  ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#40916C']);
+    register_setting('eupnea_general', 'eupnea_accent_color',     ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#006B68']);
+    register_setting('eupnea_general', 'eupnea_bg_color',         ['sanitize_callback' => 'sanitize_hex_color', 'default' => '#F9E5D7']);
 
     // Kontaktinnstillinger
     register_setting('eupnea_contact', 'eupnea_address',  ['sanitize_callback' => 'sanitize_textarea_field']);
@@ -99,12 +100,14 @@ add_action('admin_init', 'eupnea_register_settings');
 function eupnea_dynamic_colors(): void {
     $primary   = get_option('eupnea_primary_color',   '#1A3A2A');
     $secondary = get_option('eupnea_secondary_color', '#40916C');
-    $accent    = get_option('eupnea_accent_color',    '#6BCB77');
+    $accent    = get_option('eupnea_accent_color',    '#006B68');
+    $bg        = get_option('eupnea_bg_color',        '#F9E5D7');
 
     // Konverter til RGB for alpha-støtte
     $primary_rgb   = eupnea_hex_to_rgb($primary);
     $secondary_rgb = eupnea_hex_to_rgb($secondary);
     $accent_rgb    = eupnea_hex_to_rgb($accent);
+    $bg_rgb        = eupnea_hex_to_rgb($bg);
 
     echo "<style id=\"eupnea-dynamic-colors\">
     :root {
@@ -114,6 +117,9 @@ function eupnea_dynamic_colors(): void {
         --color-secondary-rgb: {$secondary_rgb};
         --color-accent:        {$accent};
         --color-accent-rgb:    {$accent_rgb};
+        --color-bg:            {$bg};
+        --color-bg-rgb:        {$bg_rgb};
+        --color-gray-50:       {$bg};
     }
     </style>\n";
 }
@@ -167,11 +173,19 @@ function eupnea_render_settings_page(): void {
                             </td>
                         </tr>
                         <tr>
-                            <th><?php esc_html_e('Accentfarge', 'eupnea'); ?></th>
+                            <th><?php esc_html_e('Knapp-/accentfarge', 'eupnea'); ?></th>
                             <td>
                                 <input type="color" name="eupnea_accent_color"
-                                       value="<?php echo esc_attr(get_option('eupnea_accent_color', '#6BCB77')); ?>">
+                                       value="<?php echo esc_attr(get_option('eupnea_accent_color', '#006B68')); ?>">
                                 <p class="description"><?php esc_html_e('Brukes til CTA-knapper og uthevede elementer.', 'eupnea'); ?></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?php esc_html_e('Bakgrunnsfarge', 'eupnea'); ?></th>
+                            <td>
+                                <input type="color" name="eupnea_bg_color"
+                                       value="<?php echo esc_attr(get_option('eupnea_bg_color', '#F9E5D7')); ?>">
+                                <p class="description"><?php esc_html_e('Sidens bakgrunnsfarge.', 'eupnea'); ?></p>
                             </td>
                         </tr>
                     </table>

@@ -5,6 +5,17 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.4.2] – 2026-05-24
+
+### Endret
+- **Knappfarge** oppdatert til `#006B68` (mørk teal)
+- **Bakgrunnsfarge** kan nå styres direkte fra Eupnea → Generelt i admin
+- Nytt felt i admin: «Bakgrunnsfarge» (standard `#F9E5D7`)
+- CSS-variabelen `--color-bg` injiseres dynamisk via admin-innstillinger
+- Accent-farge (default `#006B68`) brukes konsekvent på alle knapper og uthevede elementer
+
+---
+
 ## [1.4.1] – 2026-05-24
 
 ### Endret
