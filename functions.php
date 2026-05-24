@@ -19,6 +19,8 @@ require_once EUPNEA_DIR . '/inc/helpers.php';
 require_once EUPNEA_DIR . '/inc/admin-menu.php';
 require_once EUPNEA_DIR . '/inc/acf-fields.php';
 require_once EUPNEA_DIR . '/inc/acf-options.php';
+require_once EUPNEA_DIR . '/inc/post-types.php';
+require_once EUPNEA_DIR . '/inc/acf-cpt-fields.php';
 
 // ──────────────────────────────────────────────
 // Tema-støtte
@@ -79,3 +81,16 @@ add_action('widgets_init', 'eupnea_widgets_init');
 // Fjern WordPress-versjon fra <head>
 // ──────────────────────────────────────────────
 remove_action('wp_head', 'wp_generator');
+
+// ──────────────────────────────────────────────
+// Deaktiver Gutenberg for sider og CPT-er
+// → ACF metabokser og Flexible Content fungerer da korrekt
+// ──────────────────────────────────────────────
+function eupnea_disable_gutenberg(bool $use_block_editor, WP_Post $post): bool {
+    $classic_types = ['page', 'ansatt', 'mentor', 'partner', 'tilbakemelding'];
+    if (in_array($post->post_type, $classic_types, true)) {
+        return false;
+    }
+    return $use_block_editor;
+}
+add_filter('use_block_editor_for_post', 'eupnea_disable_gutenberg', 10, 2);

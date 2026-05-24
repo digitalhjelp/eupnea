@@ -135,6 +135,21 @@ input[type="color"] {
   color: #475569;
 }
 
+/* ── CPT admin-kolonner ─────────────────────────────────────── */
+.column-thumb  { width: 60px !important; }
+.column-order  { width: 80px !important; }
+
+/* Rekkefølge-tips under CPT-editor */
+.eupnea-order-tip {
+  background: #fffbeb;
+  border-left: 4px solid #F59E0B;
+  padding: 0.75rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  color: #78350f;
+}
+
 /* ── Submit button ──────────────────────────────────────────── */
 .submit .button-primary {
   background: #14B8A6 !important;

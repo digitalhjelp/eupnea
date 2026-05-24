@@ -564,6 +564,16 @@ strong { font-weight: 700; }
 }
 .person-card:hover .person-card__photo { border-color: var(--color-secondary); }
 .person-card__img { width: 100%; height: 100%; object-fit: cover; }
+.person-card__placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-300);
+}
+.person-card__placeholder svg { width: 60%; height: 60%; }
 
 .person-card__name {
   font-family: var(--font-sans);
@@ -628,7 +638,17 @@ strong { font-weight: 700; }
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
+  background: var(--color-gray-100);
 }
+.mentor-card__photo--placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-300);
+}
+.mentor-card__photo--placeholder svg { width: 50%; height: 50%; }
 .mentor-card__img {
   width: 100%;
   height: 100%;

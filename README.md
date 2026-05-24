@@ -1,6 +1,6 @@
 # Eupnea WordPress-tema
 
-Modulbasert WordPress-tema med ACF Flexible Content. Alle seksjoner på siden kan enkelt oppdateres via WordPress-adminpanelet.
+Modulbasert WordPress-tema med ACF Flexible Content og egne Custom Post Types for enkel administrasjon.
 
 ---
 
@@ -8,7 +8,7 @@ Modulbasert WordPress-tema med ACF Flexible Content. Alle seksjoner på siden ka
 
 - WordPress 6.0+
 - PHP 8.0+
-- [Advanced Custom Fields (ACF)](https://www.advancedcustomfields.com/) – gratis versjon fungerer
+- [Advanced Custom Fields (ACF)](https://www.advancedcustomfields.com/) – gratis versjon
 
 ---
 
@@ -16,52 +16,84 @@ Modulbasert WordPress-tema med ACF Flexible Content. Alle seksjoner på siden ka
 
 1. Last opp `eupnea`-mappen til `/wp-content/themes/eupnea/`
 2. Aktiver temaet under **Utseende → Temaer**
-3. Installer og aktiver ACF-pluginet
-4. Gå til **Sider → Innstillinger for lesing** og sett en statisk forside
-5. Rediger forsiden og bruk modulvelgeren i bunnen
+3. Installer og aktiver **ACF**-pluginet
+4. Gå til **Innstillinger → Lesing** og sett en statisk forside
+5. Rediger forsiden og legg til moduler (se under)
+
+---
+
+## 🗂️ Adminpanel – menypunkter
+
+Temaet legger til disse menyene i adminpanelet:
+
+| Meny | Hva du gjør her |
+|------|----------------|
+| **Ansatte** | Legg til / rediger ansatte med bilde, stilling, bio og LinkedIn |
+| **Mentorer** | Legg til / rediger mentorer med kompetanse og tagger |
+| **Partnere** | Legg til partnere med logo og nettside |
+| **Tilbakemeldinger** | Legg til sitater med stjerner og forfatterbilde |
+| **Eupnea → Generelt** | Endre farger og slagord |
+| **Eupnea → Kontakt** | Adresse, telefon, e-post, Google Maps |
+| **Eupnea → Sosiale medier** | Facebook, Instagram, LinkedIn, m.fl. |
+
+---
+
+## 🧩 Slik legger du til moduler på forsiden
+
+> **Viktig:** Temaet bruker klassisk editor for sider (Gutenberg er deaktivert for sider). ACF-feltene vises da korrekt.
+
+1. Gå til **Sider** → klikk **Rediger** på forsiden
+2. Scroll ned under tekstfeltet – du ser **«🧩 Sidebygger – Moduler»**
+3. Klikk **«➕ Legg til modul»**
+4. Velg ønsket modul fra listen
+5. Fyll inn innstillinger (overskrift, stil osv.)
+6. Klikk **Oppdater** for å lagre
+
+**Rekkefølge:** Dra i håndtaket (≡) til venstre for å flytte moduler opp/ned.
 
 ---
 
 ## 🧩 Tilgjengelige moduler
 
-| Modul | Layoutnavn | Beskrivelse |
-|-------|-----------|-------------|
-| 🖼️ Hero | `hero` | Stor velkomstseksjon med bilde/video, overskrift og CTA |
-| ⚡ Tjenester | `services` | Kort-grid med ikon, tittel og beskrivelse |
-| 🏢 Om oss | `about` | Tokolonne med tekst, statistikk og bilde |
-| 👥 Team | `team` | Profilkort for ansatte med LinkedIn |
-| 🎓 Mentorer | `mentors` | Mentorkort med kompetansetagger |
-| 🤝 Partnere | `partners` | Logo-grid eller scrollende marquee |
-| 💬 Tilbakemeldinger | `testimonials` | Sitater i grid, slider eller enkelt-sitat |
-| 🧭 Hvorfor/Hvordan/Hvor | `why_how_where` | Tre-kolonne presentasjon med ikon |
-| 📞 Kontakt | `contact` | Kontaktinfo, kart og skjema |
+| Modul | Hva du setter i modulen | Data fra |
+|-------|------------------------|---------|
+| 🖼️ **Hero** | Bilde/video, overskrift, CTA-knapper | Direkte i modulen |
+| ⚡ **Tjenester** | Tjeneste-kort med ikon og tekst | Direkte i modulen |
+| 🏢 **Om oss** | Bilde, tekst, statistikk | Direkte i modulen |
+| 👥 **Ansatte** | Overskrift, antall kolonner | **Ansatte**-menyen |
+| 🎓 **Mentorer** | Overskrift, maks antall | **Mentorer**-menyen |
+| 🤝 **Partnere** | Overskrift, grid/marquee | **Partnere**-menyen |
+| 💬 **Tilbakemeldinger** | Overskrift, grid/slider | **Tilbakemeldinger**-menyen |
+| 🧭 **Hvorfor/Hvordan/Hvor** | Ikon, merkelapp, tittel og tekst | Direkte i modulen |
+| 📞 **Kontakt** | Skjema-shortcode, kart | **Eupnea → Kontakt** |
 
 ---
 
-## ⚙️ Admin-meny
+## 👤 Legge til en ansatt
 
-Temaet legger til en **«Eupnea»-meny** i WordPress-adminpanelet med:
+1. Klikk **Ansatte** i venstremenyen
+2. Klikk **Legg til ansatt**
+3. Skriv inn **navn** som sidetittel
+4. Last opp **profilbilde** (Fremhevet bilde, øverst til høyre)
+5. Fyll inn **Stilling**, **Bio**, **E-post** og **LinkedIn**
+6. Sett **rekkefølge** under «Sidens attributter» (lavest vises først)
+7. Publiser
 
-| Submeny | Innhold |
-|---------|---------|
-| Generelt | Slagord, farger (primær/sekundær/accent) |
-| Kontakt | Adresse, telefon, e-post, Google Maps |
-| Sosiale medier | Facebook, Instagram, LinkedIn, Twitter/X, YouTube |
-| Moduler & hjelp | Oversikt + hurtigredigering |
+---
 
-I tillegg legges det til en **«Eupnea»-snarvei i admin-baren** øverst på siden.
+## 🔢 Rekkefølge på ansatte / mentorer
+
+Under redigering finner du **«Sidens attributter»** i høyre sidefelt.  
+Endre **«Rekkefølge»**-feltet: `0` = vises først, `1` = neste, osv.
 
 ---
 
 ## 🎨 Farger
 
-Bruk **Eupnea → Generelle innstillinger** for å endre tema-farger:
-
-- **Primærfarge** – Mørk navy (`#0D3349`)
-- **Sekundærfarge** – Teal (`#14B8A6`)
-- **Accentfarge** – Amber/gul (`#F59E0B`) – brukes til CTA-knapper
-
-Fargene blir dynamisk generert som CSS-variabler på alle sider.
+Gå til **Eupnea → Generelle innstillinger** for å endre:
+- **Primærfarge** – mørk navy (standard `#0D3349`)
+- **Sekundærfarge** – teal (standard `#14B8A6`)
+- **Accentfarge** – amber/gul for CTA-knapper (standard `#F59E0B`)
 
 ---
 
@@ -69,62 +101,27 @@ Fargene blir dynamisk generert som CSS-variabler på alle sider.
 
 ```
 eupnea/
-├── style.css               – Tema-header
-├── functions.php           – Tema-oppsett + includes
-├── header.php              – Nettstedets topp
-├── footer.php              – Bunntekst
-├── front-page.php          – Forsidemal (bruker modules)
-├── page.php                – Generisk sidemal
-├── index.php               – Fallback
-├── single.php              – Enkeltinnlegg
-├── 404.php                 – 404-side
-│
+├── functions.php           – Tema-oppsett, inkluderer alle filer
 ├── inc/
-│   ├── acf-fields.php      – Alle ACF-felt registrert i PHP
+│   ├── post-types.php      – CPT: Ansatte, Mentorer, Partnere, Tilbakemeldinger
+│   ├── acf-cpt-fields.php  – ACF-felt for CPT-ene
+│   ├── acf-fields.php      – ACF Flexible Content-moduler
 │   ├── acf-options.php     – ACF Options Pages
 │   ├── admin-menu.php      – Eupnea admin-meny + innstillinger
 │   ├── enqueue.php         – Skript og stilark
 │   └── helpers.php         – Hjelpefunksjoner
-│
 ├── modules/
 │   ├── hero.php
 │   ├── services.php
 │   ├── about.php
-│   ├── team.php
-│   ├── mentors.php
-│   ├── partners.php
-│   ├── testimonials.php
+│   ├── team.php            – Henter fra Ansatte CPT
+│   ├── mentors.php         – Henter fra Mentorer CPT
+│   ├── partners.php        – Henter fra Partnere CPT
+│   ├── testimonials.php    – Henter fra Tilbakemeldinger CPT
 │   ├── why-how-where.php
 │   └── contact.php
-│
-├── template-parts/
-│   └── flexible-content.php – ACF-loop
-│
 └── assets/
-    ├── css/
-    │   ├── main.css         – Alle frontend-stiler
-    │   └── admin.css        – Admin-panel stiler
-    └── js/
-        └── main.js          – Frontend-JavaScript
+    ├── css/main.css
+    ├── css/admin.css
+    └── js/main.js
 ```
-
----
-
-## 🔌 Støttede skjema-plugins
-
-Kontakt-modulen fungerer med alle shortcode-baserte skjema-plugins:
-- Contact Form 7: `[contact-form-7 id="123"]`
-- Gravity Forms: `[gravityforms id="1"]`
-- WPForms: `[wpforms id="123"]`
-
----
-
-## 👨‍💻 Legge til en ny modul
-
-1. Legg til layout i `inc/acf-fields.php` → `eupnea_get_all_layouts()`
-2. Lag modul-filen i `modules/ditt-navn.php`
-3. Registrer mapping i `template-parts/flexible-content.php`
-
----
-
-*Tema laget for eupnea.no*

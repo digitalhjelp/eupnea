@@ -1,6 +1,6 @@
 <?php
 /**
- * Modul: Tilbakemeldinger (Testimonials)
+ * Modul: Tilbakemeldinger – henter fra «Tilbakemeldinger» CPT
  *
  * @package Eupnea
  */
@@ -9,9 +9,17 @@ defined('ABSPATH') || exit;
 
 $title = get_sub_field('testi_title');
 $style = get_sub_field('testi_style') ?: 'grid';
-$items = get_sub_field('testi_items');
+$limit = (int)(get_sub_field('testi_limit') ?: -1);
 
-if (empty($items)) return;
+$tilbakemeldinger = get_posts([
+    'post_type'      => 'tilbakemelding',
+    'posts_per_page' => $limit,
+    'orderby'        => 'menu_order',
+    'order'          => 'ASC',
+    'post_status'    => 'publish',
+]);
+
+if (empty($tilbakemeldinger)) return;
 
 $instance_id = 'testimonials-' . uniqid();
 ?>
@@ -27,65 +35,60 @@ $instance_id = 'testimonials-' . uniqid();
         <?php endif; ?>
 
         <?php if ($style === 'slider') : ?>
-        <!-- Slider / Karusell -->
-        <div class="testimonials__slider" role="list" aria-roledescription="karusell" aria-label="Tilbakemeldinger">
-            <?php foreach ($items as $index => $item) :
-                $quote        = $item['quote']        ?? '';
-                $author_name  = $item['author_name']  ?? '';
-                $author_title = $item['author_title'] ?? '';
-                $author_photo = $item['author_photo'] ?? null;
-                $rating       = (int) ($item['rating'] ?? 5);
+        <!-- Slider -->
+        <div class="testimonials__slider" role="list">
+            <?php foreach ($tilbakemeldinger as $i => $tb) :
+                $sitat   = get_field('sitat',           $tb->ID);
+                $tittel  = get_field('forfatter_tittel', $tb->ID);
+                $bilde   = get_field('bilde',           $tb->ID);
+                $stars   = (int) get_field('stjerner',  $tb->ID) ?: 5;
+                $name    = get_the_title($tb->ID);
             ?>
-            <div class="testimonial-card testimonial-card--slide<?php echo $index === 0 ? ' is-active' : ''; ?>"
-                 role="listitem" aria-roledescription="element" aria-label="<?php echo esc_attr($index + 1); ?>">
-                <?php include __DIR__ . '/../template-parts/testimonial-inner.php'; ?>
+            <div class="testimonial-card testimonial-card--slide<?php echo $i === 0 ? ' is-active' : ''; ?>" role="listitem">
+                <?php eupnea_render_testimonial_card($sitat, $name, $tittel, $bilde, $stars); ?>
             </div>
             <?php endforeach; ?>
         </div>
 
-        <?php if (count($items) > 1) : ?>
-        <div class="testimonials__controls" aria-label="Karusell-kontroller">
+        <?php if (count($tilbakemeldinger) > 1) : ?>
+        <div class="testimonials__controls">
             <button class="testimonials__prev" aria-label="Forrige">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 18 9 12 15 6"/>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div class="testimonials__dots">
-                <?php foreach ($items as $i => $dot) : ?>
+                <?php foreach ($tilbakemeldinger as $i => $d) : ?>
                 <button class="testimonials__dot<?php echo $i === 0 ? ' is-active' : ''; ?>"
-                        aria-label="<?php printf(esc_attr__('Sitat %d', 'eupnea'), $i + 1); ?>"
-                        data-index="<?php echo esc_attr($i); ?>"></button>
+                        aria-label="Sitat <?php echo $i + 1; ?>"
+                        data-index="<?php echo $i; ?>"></button>
                 <?php endforeach; ?>
             </div>
             <button class="testimonials__next" aria-label="Neste">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"/>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
         </div>
         <?php endif; ?>
 
-        <?php elseif ($style === 'single') : ?>
+        <?php elseif ($style === 'single' && !empty($tilbakemeldinger[0])) : ?>
         <!-- Stort enkelt-sitat -->
-        <?php $item = $items[0];
-            $quote        = $item['quote']        ?? '';
-            $author_name  = $item['author_name']  ?? '';
-            $author_title = $item['author_title'] ?? '';
-            $author_photo = $item['author_photo'] ?? null;
-            $rating       = (int) ($item['rating'] ?? 5);
+        <?php
+            $tb     = $tilbakemeldinger[0];
+            $sitat  = get_field('sitat',           $tb->ID);
+            $tittel = get_field('forfatter_tittel', $tb->ID);
+            $bilde  = get_field('bilde',           $tb->ID);
+            $name   = get_the_title($tb->ID);
         ?>
         <div class="testimonials__single">
             <blockquote class="testimonial-quote testimonial-quote--large">
-                <p>"<?php echo esc_html($quote); ?>"</p>
+                <p>"<?php echo esc_html($sitat); ?>"</p>
                 <footer>
-                    <?php if ($author_photo) : ?>
-                        <?php echo eupnea_image($author_photo, 'thumbnail', 'testimonial-quote__photo'); ?>
+                    <?php if ($bilde) : ?>
+                        <img src="<?php echo esc_url($bilde['sizes']['thumbnail'] ?? $bilde['url']); ?>"
+                             alt="<?php echo esc_attr($name); ?>"
+                             class="testimonial-quote__photo" loading="lazy">
                     <?php endif; ?>
                     <cite>
-                        <strong><?php echo esc_html($author_name); ?></strong>
-                        <?php if ($author_title) : ?>
-                            <span><?php echo esc_html($author_title); ?></span>
-                        <?php endif; ?>
+                        <strong><?php echo esc_html($name); ?></strong>
+                        <?php if ($tittel) : ?><span><?php echo esc_html($tittel); ?></span><?php endif; ?>
                     </cite>
                 </footer>
             </blockquote>
@@ -94,40 +97,15 @@ $instance_id = 'testimonials-' . uniqid();
         <?php else : ?>
         <!-- Grid -->
         <div class="testimonials__grid">
-            <?php foreach ($items as $item) :
-                $quote        = $item['quote']        ?? '';
-                $author_name  = $item['author_name']  ?? '';
-                $author_title = $item['author_title'] ?? '';
-                $author_photo = $item['author_photo'] ?? null;
-                $rating       = (int) ($item['rating'] ?? 5);
+            <?php foreach ($tilbakemeldinger as $tb) :
+                $sitat   = get_field('sitat',            $tb->ID);
+                $tittel  = get_field('forfatter_tittel', $tb->ID);
+                $bilde   = get_field('bilde',            $tb->ID);
+                $stars   = (int) get_field('stjerner',   $tb->ID) ?: 5;
+                $name    = get_the_title($tb->ID);
             ?>
             <div class="testimonial-card">
-                <!-- Stjerner -->
-                <?php if ($rating > 0) : ?>
-                <div class="testimonial-card__stars" aria-label="<?php printf(esc_attr__('%d av 5 stjerner', 'eupnea'), $rating); ?>">
-                    <?php for ($s = 1; $s <= 5; $s++) : ?>
-                    <span class="star<?php echo $s <= $rating ? ' star--filled' : ''; ?>" aria-hidden="true">★</span>
-                    <?php endfor; ?>
-                </div>
-                <?php endif; ?>
-
-                <blockquote class="testimonial-card__quote">
-                    <p>"<?php echo esc_html($quote); ?>"</p>
-                </blockquote>
-
-                <footer class="testimonial-card__author">
-                    <?php if ($author_photo) : ?>
-                        <?php echo eupnea_image($author_photo, 'thumbnail', 'testimonial-card__photo'); ?>
-                    <?php endif; ?>
-                    <div class="testimonial-card__author-info">
-                        <?php if ($author_name) : ?>
-                            <cite class="testimonial-card__name"><?php echo esc_html($author_name); ?></cite>
-                        <?php endif; ?>
-                        <?php if ($author_title) : ?>
-                            <span class="testimonial-card__title"><?php echo esc_html($author_title); ?></span>
-                        <?php endif; ?>
-                    </div>
-                </footer>
+                <?php eupnea_render_testimonial_card($sitat, $name, $tittel, $bilde, $stars); ?>
             </div>
             <?php endforeach; ?>
         </div>
@@ -135,3 +113,41 @@ $instance_id = 'testimonials-' . uniqid();
 
     </div>
 </section>
+
+<?php
+// Hjelpefunksjon for ett testimonial-kort
+function eupnea_render_testimonial_card(
+    string $sitat,
+    string $name,
+    string $tittel,
+    array|null $bilde,
+    int $stars
+): void {
+    ?>
+    <?php if ($stars > 0) : ?>
+    <div class="testimonial-card__stars" aria-label="<?php echo $stars; ?> av 5 stjerner">
+        <?php for ($s = 1; $s <= 5; $s++) : ?>
+        <span class="star<?php echo $s <= $stars ? ' star--filled' : ''; ?>" aria-hidden="true">★</span>
+        <?php endfor; ?>
+    </div>
+    <?php endif; ?>
+
+    <blockquote class="testimonial-card__quote">
+        <p>"<?php echo esc_html($sitat); ?>"</p>
+    </blockquote>
+
+    <footer class="testimonial-card__author">
+        <?php if ($bilde) : ?>
+        <img src="<?php echo esc_url($bilde['sizes']['thumbnail'] ?? $bilde['url']); ?>"
+             alt="<?php echo esc_attr($name); ?>"
+             class="testimonial-card__photo" loading="lazy">
+        <?php endif; ?>
+        <div class="testimonial-card__author-info">
+            <cite class="testimonial-card__name"><?php echo esc_html($name); ?></cite>
+            <?php if ($tittel) : ?>
+            <span class="testimonial-card__title"><?php echo esc_html($tittel); ?></span>
+            <?php endif; ?>
+        </div>
+    </footer>
+    <?php
+}

@@ -299,7 +299,7 @@ function eupnea_layout_about(): array {
 }
 
 // ══════════════════════════════════════════════
-// LAYOUT: ANSATTE / TEAM
+// LAYOUT: ANSATTE / TEAM  (henter fra CPT «Ansatte»)
 // ══════════════════════════════════════════════
 function eupnea_layout_team(): array {
     return [[
@@ -308,7 +308,7 @@ function eupnea_layout_team(): array {
         'label'      => '👥 Ansatte / Team',
         'display'    => 'block',
         'sub_fields' => [
-            eupnea_field_tab('Seksjon'),
+            eupnea_field_tab('Innstillinger'),
             eupnea_field_text('field_team_title', 'team_title', 'Overskrift', false, 'Møt teamet'),
             eupnea_field_textarea('field_team_subtitle', 'team_subtitle', 'Ingress', ''),
             [
@@ -319,29 +319,21 @@ function eupnea_layout_team(): array {
                 'choices'       => ['2' => '2', '3' => '3', '4' => '4'],
                 'default_value' => '3',
             ],
-            eupnea_field_tab('Teammedlemmer'),
             [
-                'key'          => 'field_team_members',
-                'label'        => 'Teammedlemmer',
-                'name'         => 'team_members',
-                'type'         => 'repeater',
-                'layout'       => 'row',
-                'button_label' => '➕ Legg til teammedlem',
-                'sub_fields'   => [
-                    eupnea_field_image('field_tm_photo',    'photo',    'Profilbilde', 'Anbefalt: kvadratisk, 400×400 px'),
-                    eupnea_field_text('field_tm_name',     'name',     'Fullt navn',  true, 'Ola Nordmann'),
-                    eupnea_field_text('field_tm_position', 'position', 'Stilling',    false, 'Daglig leder'),
-                    eupnea_field_textarea('field_tm_bio',  'bio',      'Kort bio',    ''),
-                    eupnea_field_url('field_tm_linkedin',  'linkedin', 'LinkedIn-URL'),
-                    eupnea_field_url('field_tm_email',     'email',    'E-post (mailto:)'),
-                ],
+                'key'          => 'field_team_limit',
+                'label'        => 'Maks antall å vise (0 = alle)',
+                'name'         => 'team_limit',
+                'type'         => 'number',
+                'default_value'=> 0,
+                'min'          => 0,
+                'instructions' => 'Ansatte administreres under menypunktet «Ansatte» i adminpanelet.',
             ],
         ],
     ]];
 }
 
 // ══════════════════════════════════════════════
-// LAYOUT: MENTORER
+// LAYOUT: MENTORER  (henter fra CPT «Mentorer»)
 // ══════════════════════════════════════════════
 function eupnea_layout_mentors(): array {
     return [[
@@ -350,38 +342,24 @@ function eupnea_layout_mentors(): array {
         'label'      => '🎓 Mentorer',
         'display'    => 'block',
         'sub_fields' => [
-            eupnea_field_tab('Seksjon'),
+            eupnea_field_tab('Innstillinger'),
             eupnea_field_text('field_mentors_title', 'mentors_title', 'Overskrift', false, 'Våre mentorer'),
             eupnea_field_textarea('field_mentors_subtitle', 'mentors_subtitle', 'Ingress', ''),
-            eupnea_field_tab('Mentorer'),
             [
-                'key'          => 'field_mentors_items',
-                'label'        => 'Mentorer',
-                'name'         => 'mentors_items',
-                'type'         => 'repeater',
-                'layout'       => 'row',
-                'button_label' => '➕ Legg til mentor',
-                'sub_fields'   => [
-                    eupnea_field_image('field_mentor_photo',     'photo',     'Profilbilde', 'Kvadratisk, 400×400 px'),
-                    eupnea_field_text('field_mentor_name',      'name',      'Fullt navn',  true, 'Kari Nordmann'),
-                    eupnea_field_text('field_mentor_expertise', 'expertise', 'Kompetanseområde', false, 'Ledelse & coaching'),
-                    eupnea_field_textarea('field_mentor_bio',   'bio',       'Kort biografi', ''),
-                    eupnea_field_url('field_mentor_linkedin',   'linkedin',  'LinkedIn'),
-                    [
-                        'key'     => 'field_mentor_tags',
-                        'label'   => 'Tagger (kommaseparert)',
-                        'name'    => 'tags',
-                        'type'    => 'text',
-                        'instructions' => 'F.eks: Coaching, Ledelse, HR',
-                    ],
-                ],
+                'key'          => 'field_mentors_limit',
+                'label'        => 'Maks antall å vise (0 = alle)',
+                'name'         => 'mentors_limit',
+                'type'         => 'number',
+                'default_value'=> 0,
+                'min'          => 0,
+                'instructions' => 'Mentorer administreres under menypunktet «Mentorer» i adminpanelet.',
             ],
         ],
     ]];
 }
 
 // ══════════════════════════════════════════════
-// LAYOUT: PARTNERE
+// LAYOUT: PARTNERE  (henter fra CPT «Partnere»)
 // ══════════════════════════════════════════════
 function eupnea_layout_partners(): array {
     return [[
@@ -390,7 +368,7 @@ function eupnea_layout_partners(): array {
         'label'      => '🤝 Partnere',
         'display'    => 'block',
         'sub_fields' => [
-            eupnea_field_tab('Seksjon'),
+            eupnea_field_tab('Innstillinger'),
             eupnea_field_text('field_partners_title', 'partners_title', 'Overskrift (valgfritt)', false, 'Våre samarbeidspartnere'),
             [
                 'key'           => 'field_partners_style',
@@ -398,31 +376,18 @@ function eupnea_layout_partners(): array {
                 'name'          => 'partners_style',
                 'type'          => 'select',
                 'choices'       => [
-                    'grid'     => 'Grid (statisk)',
-                    'marquee'  => 'Scrollende rekke (marquee)',
+                    'grid'    => 'Grid (statisk)',
+                    'marquee' => 'Scrollende rekke (marquee)',
                 ],
                 'default_value' => 'grid',
-            ],
-            eupnea_field_tab('Partnere'),
-            [
-                'key'          => 'field_partners_items',
-                'label'        => 'Partnere',
-                'name'         => 'partners_items',
-                'type'         => 'repeater',
-                'layout'       => 'table',
-                'button_label' => '➕ Legg til partner',
-                'sub_fields'   => [
-                    eupnea_field_image('field_partner_logo', 'logo', 'Logo', 'SVG eller PNG, hvit/transparent bakgrunn'),
-                    eupnea_field_text('field_partner_name', 'name', 'Selskapsnavn', false, ''),
-                    eupnea_field_url('field_partner_url',   'url',  'Nettside-URL'),
-                ],
+                'instructions'  => 'Partnere administreres under menypunktet «Partnere» i adminpanelet.',
             ],
         ],
     ]];
 }
 
 // ══════════════════════════════════════════════
-// LAYOUT: TILBAKEMELDINGER (TESTIMONIALS)
+// LAYOUT: TILBAKEMELDINGER  (henter fra CPT «Tilbakemeldinger»)
 // ══════════════════════════════════════════════
 function eupnea_layout_testimonials(): array {
     return [[
@@ -431,7 +396,7 @@ function eupnea_layout_testimonials(): array {
         'label'      => '💬 Tilbakemeldinger',
         'display'    => 'block',
         'sub_fields' => [
-            eupnea_field_tab('Seksjon'),
+            eupnea_field_tab('Innstillinger'),
             eupnea_field_text('field_testi_title', 'testi_title', 'Overskrift', false, 'Hva sier kundene våre?'),
             [
                 'key'           => 'field_testi_style',
@@ -445,30 +410,14 @@ function eupnea_layout_testimonials(): array {
                 ],
                 'default_value' => 'grid',
             ],
-            eupnea_field_tab('Sitater'),
             [
-                'key'          => 'field_testi_items',
-                'label'        => 'Tilbakemeldinger',
-                'name'         => 'testi_items',
-                'type'         => 'repeater',
-                'layout'       => 'row',
-                'button_label' => '➕ Legg til sitat',
-                'sub_fields'   => [
-                    eupnea_field_textarea('field_testi_quote', 'quote', 'Sitat', ''),
-                    eupnea_field_text('field_testi_author',    'author_name',  'Navn',    false, 'Ola Nordmann'),
-                    eupnea_field_text('field_testi_author_title', 'author_title', 'Tittel/rolle', false, 'CEO, Firma AS'),
-                    eupnea_field_image('field_testi_photo',    'author_photo', 'Profilbilde (valgfritt)', ''),
-                    [
-                        'key'           => 'field_testi_rating',
-                        'label'         => 'Stjerner',
-                        'name'          => 'rating',
-                        'type'          => 'range',
-                        'min'           => 1,
-                        'max'           => 5,
-                        'step'          => 1,
-                        'default_value' => 5,
-                    ],
-                ],
+                'key'          => 'field_testi_limit',
+                'label'        => 'Maks antall å vise (0 = alle)',
+                'name'         => 'testi_limit',
+                'type'         => 'number',
+                'default_value'=> 0,
+                'min'          => 0,
+                'instructions' => 'Tilbakemeldinger administreres under menypunktet «Tilbakemeldinger» i adminpanelet.',
             ],
         ],
     ]];
