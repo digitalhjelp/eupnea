@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eupnea – Pust. Veks. Blomstr.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       EUPNEA – Design-forhåndsvisning (følger sense.eupnea.no)
+       ============================================================ */
+
+    /* ── 1. CSS-variabler ─────────────────────────────────────── */
+    :root {
+      --color-primary:       #1A3A2A;
+      --color-primary-rgb:   26, 58, 42;
+      --color-secondary:     #40916C;
+      --color-secondary-rgb: 64, 145, 108;
+      --color-accent:        #006B68;
+      --color-accent-rgb:    0, 107, 104;
+      --color-white:         #FFFFFF;
+      --color-bg:            #F9E5D7;
+      --color-gray-50:       #F9E5D7;
+      --color-gray-100:      #F2D5C0;
+      --color-gray-200:      #E5BFA5;
+      --color-gray-300:      #CFA088;
+      --color-gray-400:      #B8826B;
+      --color-gray-500:      #9A6452;
+      --color-gray-600:      #7A4A3A;
+      --color-gray-700:      #5A3328;
+      --color-gray-800:      #3D2018;
+      --color-gray-900:      #241208;
+      --color-text:          #2A1A12;
+      --color-text-muted:    #7A5848;
+      --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+      --font-serif:  'DM Serif Display', Georgia, serif;
+      --text-xs:   0.75rem;
+      --text-sm:   0.875rem;
+      --text-base: 1rem;
+      --text-lg:   1.125rem;
+      --text-xl:   1.25rem;
+      --text-2xl:  1.5rem;
+      --text-3xl:  1.875rem;
+      --text-4xl:  2.25rem;
+      --text-5xl:  3rem;
+      --text-6xl:  3.75rem;
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+      --container-max: 1200px;
+      --container-pad: 1.5rem;
+      --section-py:    5rem;
+      --border-radius:    0.75rem;
+      --border-radius-lg: 1.25rem;
+      --border-radius-xl: 2rem;
+      --transition:      0.25s ease;
+      --transition-slow: 0.4s ease;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:  0 4px 16px rgba(0,0,0,0.10);
+      --shadow-lg:  0 12px 40px rgba(0,0,0,0.12);
+      --shadow-xl:  0 24px 64px rgba(0,0,0,0.14);
+    }
+
+    /* ── 2. Reset & Base ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { max-width: 100%; height: auto; display: block; }
+    a { color: var(--color-secondary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--color-primary); }
+    ul, ol { list-style: none; }
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── 3. Typografi ─────────────────────────────────────────── */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-serif);
+      color: var(--color-primary);
+      line-height: 1.2;
+      font-weight: 400;
+    }
+    h1 { font-size: clamp(2.25rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+    h4 { font-size: 1.25rem; font-family: var(--font-sans); font-weight: 600; }
+
+    /* ── 4. Layout ────────────────────────────────────────────── */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--container-pad);
+    }
+    .module { padding: var(--section-py) 0; }
+
+    /* ── 5. Knapper ───────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.75rem 1.75rem;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      font-weight: 600;
+      border-radius: 100px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+      line-height: 1.4;
+    }
+    .btn--primary {
+      background: var(--color-accent);
+      color: #fff;
+      border-color: var(--color-accent);
+    }
+    .btn--primary:hover {
+      background: transparent;
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+    .btn--outline {
+      background: transparent;
+      color: var(--color-white);
+      border-color: rgba(255,255,255,0.6);
+    }
+    .btn--outline:hover {
+      background: var(--color-white);
+      color: var(--color-primary);
+      border-color: var(--color-white);
+    }
+    .btn--outline-dark {
+      background: transparent;
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    .btn--outline-dark:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+    }
+    .btn--small { padding: 0.5rem 1.25rem; font-size: var(--text-sm); }
+
+    /* ── 6. Seksjons-header ───────────────────────────────────── */
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto var(--space-12);
+    }
+    .section-header__title { color: var(--color-primary); }
+    .section-header__subtitle {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      margin-top: var(--space-4);
+    }
+    .section-label {
+      display: inline-block;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    /* ── 7. Header ────────────────────────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-gray-100);
+      transition: box-shadow var(--transition);
+    }
+    .site-header.is-scrolled { box-shadow: var(--shadow-md); }
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      height: 72px;
+    }
+    .site-header__brand {
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      color: var(--color-primary);
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+    .site-header__brand span {
+      color: var(--color-secondary);
+    }
+    .site-header__nav { flex: 1; }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      justify-content: center;
+    }
+    .nav-menu li { position: relative; }
+    .nav-menu a {
+      color: var(--color-gray-700);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--border-radius);
+      transition: all var(--transition);
+    }
+    .nav-menu a:hover, .nav-menu .active > a {
+      color: var(--color-primary);
+      background: var(--color-gray-50);
+    }
+    .site-header__cta { flex-shrink: 0; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px; height: 40px;
+      background: none; border: none;
+      cursor: pointer; margin-left: auto;
+    }
+    .hamburger__line {
+      display: block;
+      width: 100%; height: 2px;
+      background: var(--color-primary);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    /* ── 8. Hero ──────────────────────────────────────────────── */
+    .site-main { padding-top: 72px; }
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      min-height: 100vh;
+      background: var(--color-primary);
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 70% 40%, rgba(64,145,108,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(0,107,104,0.18) 0%, transparent 55%),
+        linear-gradient(135deg, #1A3A2A 0%, #0D2318 60%, #183530 100%);
+    }
+    /* Organisk kurve-dekkor */
+    .hero__decor {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero__decor-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+    }
+    .hero__decor-circle--1 {
+      width: 600px; height: 600px;
+      background: var(--color-secondary);
+      top: -200px; right: -100px;
+    }
+    .hero__decor-circle--2 {
+      width: 400px; height: 400px;
+      background: var(--color-accent);
+      bottom: -150px; right: 15%;
+      opacity: 0.08;
+    }
+    .hero__decor-circle--3 {
+      width: 300px; height: 300px;
+      background: var(--color-secondary);
+      top: 40%; left: -80px;
+      opacity: 0.05;
+    }
+    /* Raster-prikker */
+    .hero__dots {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-20) var(--container-pad);
+      max-width: 800px;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background: rgba(64,145,108,0.18);
+      border: 1px solid rgba(64,145,108,0.35);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: #74C69D;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-6);
+    }
+    .hero__badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #74C69D;
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+    .hero__heading {
+      color: #fff;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: var(--space-6);
+      letter-spacing: -0.01em;
+    }
+    .hero__heading em {
+      font-style: italic;
+      color: #74C69D;
+    }
+    .hero__subheading {
+      color: rgba(255,255,255,0.78);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.75;
+      margin-bottom: var(--space-10);
+      max-width: 580px;
+    }
+    .hero__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-bottom: var(--space-12);
+    }
+    /* Tall-strip */
+    .hero__stats {
+      display: flex;
+      gap: var(--space-10);
+      padding-top: var(--space-10);
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero__stat-number {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      color: #74C69D;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero__stat-label {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+    /* Hero høyre – bilde/visuell */
+    .hero__visual {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 42%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero__visual-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .hero__visual-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+    /* Geometrisk dekorasjon der bilde ville vært */
+    .hero__visual-art {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .breathing-ring {
+      position: relative;
+      width: 340px;
+      height: 340px;
+    }
+    .breathing-ring__circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(64,145,108,0.3);
+      animation: breathe 4s ease-in-out infinite;
+    }
+    .breathing-ring__circle:nth-child(1) { inset: 0; animation-delay: 0s; }
+    .breathing-ring__circle:nth-child(2) { inset: 30px; animation-delay: 0.4s; }
+    .breathing-ring__circle:nth-child(3) { inset: 60px; animation-delay: 0.8s; }
+    .breathing-ring__circle:nth-child(4) { inset: 90px; animation-delay: 1.2s; }
+    .breathing-ring__circle:nth-child(5) {
+      inset: 110px;
+      background: radial-gradient(circle, rgba(64,145,108,0.25), rgba(0,107,104,0.15));
+      border: none;
+      animation: breathe-fill 4s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.06); opacity: 0.6; }
+    }
+    @keyframes breathe-fill {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+    .breathing-ring__text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-2);
+    }
+    .breathing-ring__word {
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+    }
+    .breathing-ring__sub {
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+    }
+    /* Scroll-pil */
+    .hero__scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      cursor: pointer;
+    }
+    .hero__scroll-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.35));
+      animation: scroll-line 1.8s ease-in-out infinite;
+    }
+    @keyframes scroll-line {
+      0%, 100% { transform: scaleY(1); opacity: 0.5; }
+      50% { transform: scaleY(1.2); opacity: 1; }
+    }
+
+    /* ── 9. Tjenester ─────────────────────────────────────────── */
+    .services { background: var(--color-white); }
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .service-card {
+      background: var(--color-bg);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-8);
+      border: 1px solid var(--color-gray-100);
+      transition: all var(--transition-slow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      border-color: var(--color-gray-200);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-card__icon {
+      width: 52px; height: 52px;
+      background: rgba(var(--color-secondary-rgb), 0.1);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-5);
+      color: var(--color-secondary);
+      flex-shrink: 0;
+    }
+    .service-card__icon svg { width: 24px; height: 24px; }
+    .service-card__title {
+      font-family: var(--font-sans);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+    }
+    .service-card__desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      flex: 1;
+      margin-bottom: var(--space-5);
+      line-height: 1.7;
+    }
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-secondary);
+      margin-top: auto;
+      transition: gap var(--transition);
+    }
+    .service-card__link:hover { gap: var(--space-3); color: var(--color-primary); }
+    .service-card__link svg { width: 16px; height: 16px; }
+    .services__cta { text-align: center; margin-top: var(--space-12); }
+
+    /* ── 10. Om Eupnea ────────────────────────────────────────── */
+    .about { background: var(--color-gray-50); }
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+    .about__title { margin-top: var(--space-3); margin-bottom: var(--space-5); }
+    .about__content {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      line-height: 1.8;
+      margin-bottom: var(--space-6);
+    }
+    .about__stats {
+      display: flex;
+      gap: var(--space-8);
+      margin-bottom: var(--space-8);
+      padding: var(--space-6) 0;
+      border-top: 1px solid var(--color-gray-200);
+      border-bottom: 1px solid var(--color-gray-200);
+    }
+    .about__stat { text-align: center; }
+    .about__stat-number {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: var(--text-4xl);
+      color: var(--color-secondary);
+      line-height: 1;
+      margin-bottom: var(--space-1);
+    }
+    .about__stat-label {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    /* Visuell side */
+    .about__image-wrap {
+      border-radius: var(--border-radius-xl);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #1A3A2A 0%, #40916C 50%, #006B68 100%);
+    }
+    .about__image-art {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-12);
+      gap: var(--space-6);
+    }
+    .about__quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      color: rgba(255,255,255,0.92);
+      font-style: italic;
+      text-align: center;
+      line-height: 1.45;
+    }
+    .about__quote-mark {
+      font-size: 3rem;
+      color: rgba(64,145,108,0.6);
+      font-style: normal;
+      line-height: 0.5;
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+    .about__image-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 0.6rem 1.2rem;
+    }
+    .about__image-badge-text {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+    .about__image-badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #74C69D;
+      flex-shrink: 0;
+    }
+    /* Flourish / ornament */
+    .about__ornament {
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 200px; height: 200px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .about__ornament-2 {
+      position: absolute;
+      top: -20px; left: -20px;
+      width: 140px; height: 140px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    /* ── 11. Metode ───────────────────────────────────────────── */
+    .method { background: var(--color-white); }
+    .method__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+      margin-top: var(--space-4);
+    }
+    .method-card {
+      padding: var(--space-8);
+      border-radius: var(--border-radius-lg);
+      background: var(--color-gray-50);
+      border: 1px solid var(--color-gray-100);
+      transition: all var(--transition-slow);
+      position: relative;
+    }
+    .method-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      background: var(--color-white);
+    }
+    .method-card__number {
+      font-family: var(--font-serif);
+      font-size: 4.5rem;
+      color: rgba(var(--color-secondary-rgb), 0.12);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+      font-style: italic;
+    }
+    .method-card__title {
+      font-family: var(--font-sans);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+    }
+    .method-card__desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+    .method-card__icon-row {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+      flex-wrap: wrap;
+    }
+    .method-tag {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      background: rgba(var(--color-secondary-rgb), 0.1);
+      color: var(--color-secondary);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 100px;
+    }
+
+    /* ── 12. Program-oversikt ─────────────────────────────────── */
+    .programs { background: var(--color-primary); }
+    .programs .section-header__title { color: var(--color-white); }
+    .programs .section-header__subtitle { color: rgba(255,255,255,0.65); }
+    .programs .section-label { color: #74C69D; }
+    .programs__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+    .program-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--border-radius-xl);
+      padding: var(--space-10);
+      display: flex;
+      gap: var(--space-6);
+      align-items: flex-start;
+      transition: all var(--transition-slow);
+    }
+    .program-card:hover {
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(64,145,108,0.4);
+      transform: translateY(-4px);
+    }
+    .program-card--featured {
+      grid-column: 1 / -1;
+      background: rgba(64,145,108,0.12);
+      border-color: rgba(64,145,108,0.3);
+      flex-direction: row;
+      align-items: center;
+    }
+    .program-card__icon-wrap {
+      width: 60px; height: 60px;
+      flex-shrink: 0;
+      background: rgba(64,145,108,0.2);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #74C69D;
+    }
+    .program-card__icon-wrap svg { width: 28px; height: 28px; }
+    .program-card__body { flex: 1; }
+    .program-card__tag {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #74C69D;
+      margin-bottom: var(--space-2);
+    }
+    .program-card__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      color: var(--color-white);
+      margin-bottom: var(--space-3);
+    }
+    .program-card__desc {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+    }
+    .program-card__meta {
+      display: flex;
+      gap: var(--space-5);
+      flex-wrap: wrap;
+    }
+    .program-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.5);
+    }
+    .program-meta-item svg { width: 14px; height: 14px; color: #74C69D; }
+    .program-card__btn {
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .programs__cta { text-align: center; margin-top: var(--space-12); }
+
+    /* ── 13. Mentorer ─────────────────────────────────────────── */
+    .mentors { background: var(--color-gray-50); }
+    .mentors__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-8);
+    }
+    .mentor-card {
+      background: var(--color-white);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-slow);
+      border: 1px solid var(--color-gray-100);
+    }
+    .mentor-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .mentor-card__visual {
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-200) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mentor-card__avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--color-gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      color: var(--color-gray-600);
+    }
+    .mentor-card__info { padding: var(--space-5); }
+    .mentor-card__name {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-1);
+    }
+    .mentor-card__expertise {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-3);
+    }
+    .mentor-card__bio {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .mentor-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .mentor-tag {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      background: rgba(var(--color-secondary-rgb), 0.1);
+      color: var(--color-secondary);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 100px;
+    }
+
+    /* ── 14. Tilbakemeldinger ─────────────────────────────────── */
+    .testimonials { background: var(--color-white); }
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-6);
+    }
+    .testimonial-card {
+      background: var(--color-gray-50);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--color-gray-100);
+      transition: all var(--transition-slow);
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .testimonial-card__stars { margin-bottom: var(--space-4); font-size: 1.1rem; color: var(--color-accent); }
+    .testimonial-card__quote {
+      font-size: var(--text-base);
+      color: var(--color-text);
+      font-style: italic;
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: var(--space-6);
+    }
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-gray-200);
+    }
+    .testimonial-card__avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: var(--text-lg);
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-card__name {
+      display: block;
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: var(--text-sm);
+    }
+    .testimonial-card__role {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* ── 15. Partnere ─────────────────────────────────────────── */
+    .partners { background: var(--color-gray-50); padding: var(--space-12) 0; }
+    .partners__label {
+      text-align: center;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-gray-400);
+      margin-bottom: var(--space-8);
+    }
+    .partners__row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-10);
+      flex-wrap: wrap;
+    }
+    .partner-item {
+      font-family: var(--font-serif);
+      font-size: var(--text-xl);
+      color: var(--color-gray-300);
+      transition: color var(--transition);
+      opacity: 0.7;
+      font-style: italic;
+    }
+    .partner-item:hover { color: var(--color-secondary); opacity: 1; }
+    .partner-divider {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--color-gray-300);
+      flex-shrink: 0;
+    }
+
+    /* ── 16. Kontakt / CTA-boks ───────────────────────────────── */
+    .cta-section { background: var(--color-bg); padding: var(--section-py) 0; }
+    .cta-box {
+      background: linear-gradient(135deg, #1A3A2A 0%, #0D2318 60%, #183530 100%);
+      border-radius: var(--border-radius-xl);
+      padding: var(--space-16) var(--space-20);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(64,145,108,0.15) 0%, transparent 70%);
+    }
+    .cta-box__content { position: relative; z-index: 1; }
+    .cta-box__label {
+      display: inline-block;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #74C69D;
+      margin-bottom: var(--space-4);
+    }
+    .cta-box__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #fff;
+      margin-bottom: var(--space-5);
+    }
+    .cta-box__title em { font-style: italic; color: #74C69D; }
+    .cta-box__subtitle {
+      font-size: var(--text-lg);
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      margin: 0 auto var(--space-10);
+      line-height: 1.7;
+    }
+    .cta-box__buttons {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-box__decor {
+      position: absolute;
+      width: 400px; height: 400px;
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .cta-box__decor--1 { top: -200px; right: -100px; }
+    .cta-box__decor--2 { bottom: -200px; left: -100px; }
+
+    /* ── 17. Footer ───────────────────────────────────────────── */
+    .site-footer { background: #1A3A2A; color: rgba(255,255,255,0.75); }
+    .footer-main { padding: var(--space-16) 0; }
+    .footer-main__inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+    .footer-brand { font-family: var(--font-serif); font-size: var(--text-2xl); color: var(--color-white); }
+    .footer-brand span { color: #74C69D; }
+    .footer-tagline {
+      font-size: var(--text-sm);
+      line-height: 1.7;
+      margin-top: var(--space-3);
+      opacity: 0.65;
+    }
+    .footer-social {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .footer-social__link {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      transition: all var(--transition);
+    }
+    .footer-social__link:hover { background: var(--color-secondary); color: #fff; transform: translateY(-2px); }
+    .footer-social__link svg { width: 16px; height: 16px; }
+    .footer-col__title {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-white);
+      margin-bottom: var(--space-5);
+    }
+    .footer-nav { display: flex; flex-direction: column; gap: var(--space-3); }
+    .footer-nav a {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--color-white); }
+    .footer-contact { display: flex; flex-direction: column; gap: var(--space-4); }
+    .footer-contact__item {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-contact__item svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; color: #74C69D; }
+    .footer-contact__item a { color: rgba(255,255,255,0.55); }
+    .footer-contact__item a:hover { color: #fff; }
+    .footer-bottom {
+      background: rgba(0,0,0,0.2);
+      padding: var(--space-5) 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-bottom__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+    }
+    .footer-bottom__copy,
+    .footer-bottom__credits {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.4);
+      margin: 0;
+    }
+    .footer-bottom__credits a { color: rgba(255,255,255,0.4); }
+    .footer-bottom__credits a:hover { color: #fff; }
+
+    /* ── 18. Animasjoner ──────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .animate {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+      }
+      .animate.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      .animate--delay-1 { transition-delay: 0.1s; }
+      .animate--delay-2 { transition-delay: 0.2s; }
+      .animate--delay-3 { transition-delay: 0.3s; }
+      .animate--delay-4 { transition-delay: 0.4s; }
+      .animate--delay-5 { transition-delay: 0.5s; }
+    }
+
+    /* ── 19. Responsiv ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      :root { --section-py: 4rem; }
+      .about__inner { grid-template-columns: 1fr; gap: var(--space-10); }
+      .footer-main__inner { grid-template-columns: 1fr 1fr; }
+      .footer-col--brand { grid-column: 1 / -1; }
+      .hero__visual { display: none; }
+    }
+    @media (max-width: 768px) {
+      :root { --section-py: 3rem; --container-pad: 1.25rem; }
+      .hamburger { display: flex; }
+      .site-header__nav { display: none; }
+      .site-header__cta { display: none; }
+      .services__grid { grid-template-columns: 1fr; }
+      .method__grid { grid-template-columns: 1fr; }
+      .programs__grid { grid-template-columns: 1fr; }
+      .program-card--featured { flex-direction: column; }
+      .footer-main__inner { grid-template-columns: 1fr; gap: var(--space-8); }
+      .footer-bottom__inner { flex-direction: column; text-align: center; }
+      .cta-box { padding: var(--space-12) var(--space-8); }
+      .about__stats { flex-wrap: wrap; gap: var(--space-5); }
+      .hero__stats { flex-wrap: wrap; gap: var(--space-6); }
+    }
+    @media (max-width: 480px) {
+      .hero__heading { font-size: 2.2rem; }
+      .testimonials__grid { grid-template-columns: 1fr; }
+      .mentors__grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── 20. Accessibility ────────────────────────────────────── */
+    :focus-visible {
+      outline: 3px solid var(--color-secondary);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────────── -->
+<header id="masthead" class="site-header">
+  <div class="container site-header__inner">
+
+    <div class="site-header__brand">
+      <a href="#">Eupnea</a>
+    </div>
+
+    <nav class="site-header__nav" aria-label="Primærnavigasjon">
+      <ul class="nav-menu">
+        <li><a href="#om-oss">Om oss</a></li>
+        <li><a href="#tjenester">Tjenester</a></li>
+        <li><a href="#programmer">Programmer</a></li>
+        <li><a href="#mentorer">Mentorer</a></li>
+        <li><a href="#tilbakemeldinger">Referanser</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__cta">
+      <a href="#kontakt" class="btn btn--primary btn--small">Start i dag</a>
+    </div>
+
+    <button class="hamburger" aria-label="Åpne meny" aria-expanded="false">
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+    </button>
+  </div>
+</header>
+
+<main class="site-main">
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Hero-seksjon">
+    <div class="hero__bg"></div>
+    <div class="hero__decor">
+      <div class="hero__decor-circle hero__decor-circle--1"></div>
+      <div class="hero__decor-circle hero__decor-circle--2"></div>
+      <div class="hero__decor-circle hero__decor-circle--3"></div>
+    </div>
+    <div class="hero__dots"></div>
+
+    <div class="container hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Norsk coaching &amp; lederutvikling
+      </div>
+
+      <h1 class="hero__heading">
+        Pust dypere.<br>
+        Led <em>bedre.</em><br>
+        Veks roligere.
+      </h1>
+
+      <p class="hero__subheading">
+        Eupnea hjelper ledere og organisasjoner med å skape bærekraftig vekst gjennom
+        bevisst lederskap, indre ro og høy ytelse — på én og samme tid.
+      </p>
+
+      <div class="hero__buttons">
+        <a href="#programmer" class="btn btn--primary">Se våre programmer</a>
+        <a href="#om-oss" class="btn btn--outline">Lær om oss</a>
+      </div>
+
+      <div class="hero__stats">
+        <div>
+          <span class="hero__stat-number">500+</span>
+          <span class="hero__stat-label">Ledere coachede</span>
+        </div>
+        <div>
+          <span class="hero__stat-number">12</span>
+          <span class="hero__stat-label">År med erfaring</span>
+        </div>
+        <div>
+          <span class="hero__stat-number">96%</span>
+          <span class="hero__stat-label">Fornøyde klienter</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visuell dekorasjon høyre -->
+    <div class="hero__visual">
+      <div class="hero__visual-inner">
+        <div class="hero__visual-art">
+          <div class="breathing-ring">
+            <div class="breathing-ring__circle"></div>
+            <div class="breathing-ring__circle"></div>
+            <div class="breathing-ring__circle"></div>
+            <div class="breathing-ring__circle"></div>
+            <div class="breathing-ring__circle"></div>
+            <div class="breathing-ring__text">
+              <span class="breathing-ring__word">eupnea</span>
+              <span class="breathing-ring__sub">normal, rolig pust</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" onclick="document.getElementById('tjenester').scrollIntoView({behavior:'smooth'})" aria-hidden="true">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ─── PARTNERE (strip) ───────────────────────────────────── -->
+  <div class="partners">
+    <p class="partners__label">Brukt av ledere i</p>
+    <div class="partners__row">
+      <span class="partner-item">Telenor</span>
+      <span class="partner-divider"></span>
+      <span class="partner-item">DNB</span>
+      <span class="partner-divider"></span>
+      <span class="partner-item">Equinor</span>
+      <span class="partner-divider"></span>
+      <span class="partner-item">Rema 1000</span>
+      <span class="partner-divider"></span>
+      <span class="partner-item">NHO</span>
+      <span class="partner-divider"></span>
+      <span class="partner-item">Oslo Kommune</span>
+    </div>
+  </div>
+
+  <!-- ─── TJENESTER ──────────────────────────────────────────── -->
+  <section id="tjenester" class="module services">
+    <div class="container">
+
+      <header class="section-header animate">
+        <span class="section-label">Hva vi tilbyr</span>
+        <h2 class="section-header__title">Tjenester som skaper varig endring</h2>
+        <p class="section-header__subtitle">
+          Vi kombinerer dokumenterte metoder fra ledelsesforskning, somatisk coaching
+          og positiv psykologi for å gi deg verktøy som faktisk virker.
+        </p>
+      </header>
+
+      <div class="services__grid">
+
+        <div class="service-card animate animate--delay-1">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Individuell coaching</h3>
+          <p class="service-card__desc">
+            Personlig one-to-one coaching for ledere og fagfolk som ønsker å utvikle
+            seg, øke sin innflytelse og finne bærekraftig balanse mellom prestasjon og velvære.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-card animate animate--delay-2">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Teamutvikling</h3>
+          <p class="service-card__desc">
+            Fasiliterte prosesser som styrker samarbeid, psykologisk trygghet og kollektiv
+            ytelse. Vi hjelper team å navigere endring og vokse gjennom kompleksitet.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-card animate animate--delay-3">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Ledelsesutviklingsprogram</h3>
+          <p class="service-card__desc">
+            Strukturerte program over 3–12 måneder som transformerer lederkultur,
+            styrker beslutningsevne og bygger organisasjoner som tiltrekker seg de beste.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-card animate animate--delay-1">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Mindfulness &amp; stressmestring</h3>
+          <p class="service-card__desc">
+            Vitenskapelig baserte metoder for å redusere stress, forbedre fokus og
+            bygge motstandskraft. Kropp og sinn i harmoni — i og utenfor arbeidslivet.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-card animate animate--delay-2">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Workshops &amp; foredrag</h3>
+          <p class="service-card__desc">
+            Inspirerende og praksisnære workshops og foredrag for konferanser,
+            kick-offs og internseminarer. Skreddersydd til din organisasjon.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="service-card animate animate--delay-3">
+          <div class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="service-card__title">Organisasjonsutvikling</h3>
+          <p class="service-card__desc">
+            Helhetlige prosesser for organisasjoner i transformasjon. Vi støtter deg
+            gjennom kulturbygging, endringsledelse og strategisk kapasitetsutvikling.
+          </p>
+          <a href="#" class="service-card__link">
+            Les mer
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="services__cta animate">
+        <a href="#kontakt" class="btn btn--outline-dark">Ta kontakt for et uforpliktende møte</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── OM OSS ─────────────────────────────────────────────── -->
+  <section id="om-oss" class="module about">
+    <div class="container about__inner">
+
+      <div class="about__text animate">
+        <span class="section-label">Hvem er vi</span>
+        <h2 class="about__title">Eupnea — rooted in breath, driven by growth</h2>
+        <div class="about__content">
+          <p>
+            Eupnea betyr «normal, rolig pust» på gresk — og det beskriver akkurat hva vi
+            tror bærekraftig ledelse handler om: å finne roen i kaoset, og lede fra et
+            sted av indre styrke snarere enn reaktivitet.
+          </p>
+          <p>
+            Vi er et norsk coaching- og rådgivningsselskap grunnlagt av erfarne ledere
+            og sertifiserte coacher. Vårt fagteam kombinerer dyp praktisk ledererfaring
+            med de nyeste metodene innen positiv psykologi, nevrovitenskap og somatisk coaching.
+          </p>
+        </div>
+
+        <div class="about__stats">
+          <div class="about__stat">
+            <span class="about__stat-number">500+</span>
+            <span class="about__stat-label">Klienter betjent</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">12</span>
+            <span class="about__stat-label">Års erfaring</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number">8</span>
+            <span class="about__stat-label">Sertifiserte coacher</span>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn--primary">Møt teamet vårt</a>
+      </div>
+
+      <div class="about__image-wrap animate animate--delay-2">
+        <div class="about__image-art">
+          <blockquote class="about__quote">
+            <span class="about__quote-mark">"</span>
+            Det handler ikke om å jobbe hardere — men om å lede klokere.
+          </blockquote>
+          <div class="about__image-badge">
+            <span class="about__image-badge-dot"></span>
+            <span class="about__image-badge-text">Oslo, Norge • Est. 2012</span>
+          </div>
+        </div>
+        <div class="about__ornament"></div>
+        <div class="about__ornament-2"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── METODE ─────────────────────────────────────────────── -->
+  <section class="module method">
+    <div class="container">
+
+      <header class="section-header animate">
+        <span class="section-label">Vår tilnærming</span>
+        <h2 class="section-header__title">En metode forankret i forskning og praksis</h2>
+        <p class="section-header__subtitle">
+          Vi tror på hele mennesket. Våre metoder integrerer kognisjon, kropp og relasjon
+          for varig og autentisk lederutvikling.
+        </p>
+      </header>
+
+      <div class="method__grid">
+
+        <div class="method-card animate animate--delay-1">
+          <div class="method-card__number">01</div>
+          <h3 class="method-card__title">Kartlegg &amp; Forstå</h3>
+          <p class="method-card__desc">
+            Vi starter alltid med en grundig kartlegging av deg, ditt team og din
+            kontekst. Ingen standard oppskrifter — bare innsikt som gir mening for deg.
+          </p>
+          <div class="method-card__icon-row">
+            <span class="method-tag">360° feedback</span>
+            <span class="method-tag">Styrkeanalyse</span>
+            <span class="method-tag">Verdikartlegging</span>
+          </div>
+        </div>
+
+        <div class="method-card animate animate--delay-2">
+          <div class="method-card__number">02</div>
+          <h3 class="method-card__title">Øv &amp; Eksperimenter</h3>
+          <p class="method-card__desc">
+            Gjennom strukturerte øvelser, refleksjon og eksperimentering bygger du
+            nye handlingsmønstre. Læring skjer i praksis, ikke bare i teorien.
+          </p>
+          <div class="method-card__icon-row">
+            <span class="method-tag">Somatiske øvelser</span>
+            <span class="method-tag">Mindfulness</span>
+            <span class="method-tag">Rollespill</span>
+          </div>
+        </div>
+
+        <div class="method-card animate animate--delay-3">
+          <div class="method-card__number">03</div>
+          <h3 class="method-card__title">Integrer &amp; Voks</h3>
+          <p class="method-card__desc">
+            Vi følger deg over tid, støtter implementering og feirer fremgang.
+            Målet er ikke et kurs — det er varig transformasjon som holder.
+          </p>
+          <div class="method-card__icon-row">
+            <span class="method-tag">Oppfølgingscoaching</span>
+            <span class="method-tag">Måling av effekt</span>
+            <span class="method-tag">Kontinuerlig støtte</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMMER ─────────────────────────────────────────── -->
+  <section id="programmer" class="module programs">
+    <div class="container">
+
+      <header class="section-header animate">
+        <span class="section-label">Programmer</span>
+        <h2 class="section-header__title">Finn programmet som passer deg</h2>
+        <p class="section-header__subtitle">
+          Fra intensive intensivprogram til langvarig utvikling — vi har et tilbud
+          for der du er akkurat nå.
+        </p>
+      </header>
+
+      <div class="programs__grid">
+
+        <!-- Fremhevet program -->
+        <div class="program-card program-card--featured animate">
+          <div class="program-card__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__tag">⭐ Mest populære</span>
+            <h3 class="program-card__title">Eupnea Signature Leadership Program</h3>
+            <p class="program-card__desc">
+              Vårt flagship 6-månedersprogram for ledere på alle nivå. Kombinerer individuell coaching,
+              gruppeøkter og praksisnære verktøy. Begrenset til 8 deltakere per kull for tett oppfølging.
+            </p>
+            <div class="program-card__meta">
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                6 måneder
+              </span>
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Maks 8 deltakere
+              </span>
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Neste oppstart: September 2026
+              </span>
+            </div>
+          </div>
+          <div class="program-card__btn">
+            <a href="#kontakt" class="btn btn--primary">Søk nå</a>
+          </div>
+        </div>
+
+        <div class="program-card animate animate--delay-1">
+          <div class="program-card__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__tag">Rask oppstart</span>
+            <h3 class="program-card__title">Intensiv coaching-sprint</h3>
+            <p class="program-card__desc">
+              4 intensive coaching-sesjoner over 4 uker. Perfekt for ledere som
+              trenger rask klarhet og momentum rundt én spesifikk utfordring.
+            </p>
+            <div class="program-card__meta">
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                4 uker
+              </span>
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                1:1 individuelt
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="program-card animate animate--delay-2">
+          <div class="program-card__icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="program-card__body">
+            <span class="program-card__tag">For team</span>
+            <h3 class="program-card__title">Team Excellence Program</h3>
+            <p class="program-card__desc">
+              Et 3-månedersprogram designet for ledergrupper og høyytende team
+              som ønsker å løfte samarbeid og kollektiv prestasjon til neste nivå.
+            </p>
+            <div class="program-card__meta">
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                3 måneder
+              </span>
+              <span class="program-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                5–15 deltakere
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="programs__cta animate">
+        <a href="#kontakt" class="btn btn--outline">Se alle programmer</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── MENTORER ──────────────────────────────────────────── -->
+  <section id="mentorer" class="module mentors">
+    <div class="container">
+
+      <header class="section-header animate">
+        <span class="section-label">Våre mentorer</span>
+        <h2 class="section-header__title">Møt ekspertene bak Eupnea</h2>
+        <p class="section-header__subtitle">
+          Våre mentorer og coacher har alle kombinasjonen av solid akademisk bakgrunn
+          og dyp praktisk erfaring fra norsk og internasjonalt næringsliv.
+        </p>
+      </header>
+
+      <div class="mentors__grid">
+
+        <div class="mentor-card animate animate--delay-1">
+          <div class="mentor-card__visual">
+            <div class="mentor-card__avatar">M</div>
+          </div>
+          <div class="mentor-card__info">
+            <div class="mentor-card__name">Maria Andreassen</div>
+            <div class="mentor-card__expertise">Executive Coach &amp; Grunnlegger</div>
+            <p class="mentor-card__bio">
+              20+ års erfaring som leder i internasjonale selskaper.
+              ICF PCC-sertifisert coach og ekspert på lederskap under press.
+            </p>
+            <div class="mentor-card__tags">
+              <span class="mentor-tag">Lederutvikling</span>
+              <span class="mentor-tag">Stressmestring</span>
+              <span class="mentor-tag">Strategi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mentor-card animate animate--delay-2">
+          <div class="mentor-card__visual">
+            <div class="mentor-card__avatar">T</div>
+          </div>
+          <div class="mentor-card__info">
+            <div class="mentor-card__name">Thomas Berg</div>
+            <div class="mentor-card__expertise">Team Coach &amp; Fasilitator</div>
+            <p class="mentor-card__bio">
+              Psykolog og sertifisert team-coach. Spesialist på psykologisk
+              trygghet, konflikthåndtering og teamdynamikk.
+            </p>
+            <div class="mentor-card__tags">
+              <span class="mentor-tag">Psykologisk trygghet</span>
+              <span class="mentor-tag">Teambygging</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mentor-card animate animate--delay-3">
+          <div class="mentor-card__visual">
+            <div class="mentor-card__avatar">S</div>
+          </div>
+          <div class="mentor-card__info">
+            <div class="mentor-card__name">Sofie Haugen</div>
+            <div class="mentor-card__expertise">Mindfulness &amp; Somatisk Coach</div>
+            <p class="mentor-card__bio">
+              Forsker og praktiker innen mindfulness-basert stressreduksjon.
+              Integrerer kropp og sinn i ledercoaching.
+            </p>
+            <div class="mentor-card__tags">
+              <span class="mentor-tag">MBSR</span>
+              <span class="mentor-tag">Somatisk coaching</span>
+              <span class="mentor-tag">Nevrovitenskap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mentor-card animate animate--delay-1">
+          <div class="mentor-card__visual">
+            <div class="mentor-card__avatar">K</div>
+          </div>
+          <div class="mentor-card__info">
+            <div class="mentor-card__name">Kristian Lie</div>
+            <div class="mentor-card__expertise">Organisasjonspsykolog</div>
+            <p class="mentor-card__bio">
+              PhD i organisasjonspsykologi. Rådgiver for noen av Norges
+              største organisasjoner i spørsmål om kultur og endringsledelse.
+            </p>
+            <div class="mentor-card__tags">
+              <span class="mentor-tag">Endringsledelse</span>
+              <span class="mentor-tag">Kultur</span>
+              <span class="mentor-tag">OD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── TILBAKEMELDINGER ───────────────────────────────────── -->
+  <section id="tilbakemeldinger" class="module testimonials">
+    <div class="container">
+
+      <header class="section-header animate">
+        <span class="section-label">Hva klientene sier</span>
+        <h2 class="section-header__title">Ledere som har vokst med Eupnea</h2>
+      </header>
+
+      <div class="testimonials__grid">
+
+        <div class="testimonial-card animate animate--delay-1">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            «Eupnea forandret måten jeg leder på. Jeg er roligere, tydeligere og
+            mer tilstede — og teamet mitt merker det. De siste 12 månedene har
+            vært de beste i min karriere.»
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">A</div>
+            <div>
+              <span class="testimonial-card__name">Anders Holm</span>
+              <span class="testimonial-card__role">CEO, TechNordic AS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate animate--delay-2">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            «Etter 6 måneder med Signature-programmet er ledergruppen vår
+            transformert. Vi kommuniserer bedre, tar raskere beslutninger
+            og har redusert intern gnisning med 70%.»
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">L</div>
+            <div>
+              <span class="testimonial-card__name">Lena Strøm</span>
+              <span class="testimonial-card__role">Konserndirektør, Finans</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card animate animate--delay-3">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__quote">
+            «Jeg hadde vært skeptisk til coaching før. Men Eupnea er annerledes —
+            de er utrolig dyktige, direktefremme og leverer konkrete resultater.
+            Absolutt verdt investeringen.»
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">M</div>
+            <div>
+              <span class="testimonial-card__name">Martin Bakke</span>
+              <span class="testimonial-card__role">Avdelingsleder, Offentlig sektor</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA-SEKSJON ────────────────────────────────────────── -->
+  <section id="kontakt" class="cta-section">
+    <div class="container">
+      <div class="cta-box animate">
+        <div class="cta-box__decor cta-box__decor--1"></div>
+        <div class="cta-box__decor cta-box__decor--2"></div>
+        <div class="cta-box__content">
+          <span class="cta-box__label">Ta det første steget</span>
+          <h2 class="cta-box__title">Klar til å puste <em>friere</em> som leder?</h2>
+          <p class="cta-box__subtitle">
+            Book en gratis 30-minutters samtale med en av våre coacher.
+            Vi finner ut om Eupnea er riktig match for deg — uten forpliktelser.
+          </p>
+          <div class="cta-box__buttons">
+            <a href="mailto:hei@eupnea.no" class="btn btn--primary">Book gratis samtale</a>
+            <a href="tel:+4722123456" class="btn btn--outline">Ring oss: 22 12 34 56</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ──────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container footer-main__inner">
+
+      <div class="footer-col footer-col--brand">
+        <div class="footer-brand">Eupnea</div>
+        <p class="footer-tagline">
+          Rooted in breath, driven by growth.<br>
+          Vi hjelper norske ledere å prestere bærekraftig
+          og lede med ro, klarhet og mot.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="footer-social__link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social__link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="footer-social__link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col__title">Navigasjon</h4>
+        <nav class="footer-nav">
+          <a href="#om-oss">Om oss</a>
+          <a href="#tjenester">Tjenester</a>
+          <a href="#programmer">Programmer</a>
+          <a href="#mentorer">Mentorer</a>
+          <a href="#tilbakemeldinger">Referanser</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col__title">Kontakt</h4>
+        <ul class="footer-contact">
+          <li class="footer-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Rådhusgata 4, 0151 Oslo</span>
+          </li>
+          <li class="footer-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.38 2 2 0 0 1 3.64 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 5.55 5.55l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/>
+            </svg>
+            <a href="tel:+4722123456">22 12 34 56</a>
+          </li>
+          <li class="footer-contact__item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <a href="mailto:hei@eupnea.no">hei@eupnea.no</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">
+      <p class="footer-bottom__copy">&copy; 2026 Eupnea. Alle rettigheter forbeholdt.</p>
+      <p class="footer-bottom__credits">
+        Bygget med <a href="https://wordpress.org" target="_blank" rel="noopener">WordPress</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+(function () {
+
+  // Header sticky
+  const header = document.getElementById('masthead');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 60);
+    }, { passive: true });
+  }
+
+  // Hamburger
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.site-header__nav');
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('is-active');
+      nav.style.display = open ? 'block' : '';
+      hamburger.setAttribute('aria-expanded', open.toString());
+    });
+  }
+
+  // Scroll-animasjoner
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href').slice(1);
+      const target = id ? document.getElementById(id) : null;
+      if (target) {
+        e.preventDefault();
+        const offset = (header ? header.offsetHeight : 72) + 16;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Counter-animasjon
+  function animateCounter(el) {
+    const raw = el.textContent.replace(/[^0-9]/g, '');
+    if (!raw) return;
+    const end = parseInt(raw, 10);
+    const suffix = el.textContent.replace(/[0-9]/g, '');
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * end) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const cObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateCounter(e.target); cObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.about__stat-number, .hero__stat-number').forEach(el => cObs.observe(el));
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -24,6 +24,16 @@ function eupnea_enqueue_assets(): void {
         EUPNEA_VERSION
     );
 
+    // Forside v2 – last kun på sider med malen "Forside v2"
+    if (is_page_template('template-forside-v2.php')) {
+        wp_enqueue_style(
+            'eupnea-forside-v2',
+            EUPNEA_URI . '/assets/css/forside-v2.css',
+            ['eupnea-main'],
+            EUPNEA_VERSION
+        );
+    }
+
     // Hoved-JS
     wp_enqueue_script(
         'eupnea-main',
