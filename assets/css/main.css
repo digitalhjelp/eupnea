@@ -336,7 +336,7 @@ strong { font-weight: 700; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: #1A3A2A; /* fast mørk fallback – uavhengig av admin-fargevalg */
+  background-color: var(--color-primary);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
