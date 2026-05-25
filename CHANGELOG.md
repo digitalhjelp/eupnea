@@ -5,6 +5,13 @@ Format basert på [Keep a Changelog](https://keepachangelog.com/no/1.0.0/).
 
 ---
 
+## [1.4.4] – 2026-05-25
+
+### Fikset
+- **Hero-bakgrunn:** Fjernet hardkodet fallback-farge (`#1A3A2A`) – hero bruker nå `var(--color-primary)` og følger temaets fargevalg fra admin
+
+---
+
 ## [1.4.3] – 2026-05-24
 
 ### Fikset
